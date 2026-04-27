@@ -73,9 +73,19 @@ public class ClienteService {
 
     @Transactional
     public ClienteResponseDTO criarCliente(ClienteRequestDTO clienteRequestDTO) {
+        // 1. Limpamos o telefone que veio do Angular
+        String telefoneLimpo = normalizarTelefone(clienteRequestDTO.telefone());
+
+        // 2. A Validação: Se já existir no banco, a gente "quebra" a requisição aqui mesmo
+        if (clienteRepository.existsByTelefone(telefoneLimpo)) {
+            throw new IllegalArgumentException("Este telefone já está cadastrado no sistema.");
+        }
+
+        // 3. Se passou pela barreira, salva normal
         Cliente cliente = new Cliente();
         cliente.setNome(clienteRequestDTO.nome().trim());
-        cliente.setTelefone(normalizarTelefone(clienteRequestDTO.telefone()));
+        cliente.setTelefone(telefoneLimpo); // Passamos a variável que já está limpa
+
         clienteRepository.save(cliente);
         return formatarResponseDTO(cliente);
     }
@@ -86,18 +96,18 @@ public class ClienteService {
                 .map(this::formatarResponseDTO)
                 .toList();
     }
+    public Page<ClienteResponseDTO> obterClientesPaginados(int numeroPag, int tamanhoPag, String busca) {
 
-    public Page<ClienteResponseDTO> obterClientesPaginados (int numeroPag, int tamanhoPag){
-
-        // Dizemos a ele qual página queremos e quantos itens cabem nela.
+        // 1. Dizemos a ele qual página queremos e quantos itens cabem nela.
         Pageable paginacao = PageRequest.of(numeroPag, tamanhoPag);
+        Page<Cliente> paginaDeClientes;
 
-        //Vamos no repositório. O findAll do Spring Data JPA já aceita paginação nativamente!
-        // Ele não vai mais trazer uma List<Cliente>, e sim um Page<Cliente> (uma página com os 10 clientes dentro).
-        Page<Cliente> paginaDeClientes = clienteRepository.findAll(paginacao);
-
-        // Ele passa por cada cliente dessa página de 10 e converte em DTO,
-        // mantendo toda a estrutura de paginação (total de páginas, página atual, etc).
+        // 2. A bifurcação: Tem busca ou não tem?
+        if (busca == null || busca.trim().isEmpty()) {
+            paginaDeClientes = clienteRepository.findAll(paginacao);
+        } else {
+            paginaDeClientes = clienteRepository.pesquisarPorNomeOuTelefone(busca, paginacao);
+        }
         return paginaDeClientes.map(this::formatarResponseDTO);
     }
 
@@ -112,10 +122,22 @@ public class ClienteService {
 
     @Transactional
     public ClienteResponseDTO atualizar(Long id, ClienteRequestDTO dto) {
+        // 1. Busca o cliente ou morre tentando
         Cliente cliente = clienteRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
-        cliente.setNome(dto.nome());
-        cliente.setTelefone(normalizarTelefone(dto.telefone()));
+
+        // 2. Limpamos o telefone que veio do Angular
+        String telefoneLimpo = normalizarTelefone(dto.telefone());
+
+        // 3. A Validação: Procura esse telefone em QUALQUER cliente, MENOS nesse ID
+        if (clienteRepository.existsByTelefoneAndIdNot(telefoneLimpo, id)) {
+            throw new IllegalArgumentException("Este telefone já pertence a outro cliente.");
+        }
+
+        // 4. Se passou pela barreira, atualiza e salva
+        cliente.setNome(dto.nome().trim());
+        cliente.setTelefone(telefoneLimpo);
+
         Cliente salvo = clienteRepository.save(cliente);
         return formatarResponseDTO(salvo);
     }

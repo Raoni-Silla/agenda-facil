@@ -32,9 +32,10 @@ public class ClienteController {
     @GetMapping("/obterclientes")
     public ResponseEntity<Page<ClienteResponseDTO>> listarClientes(
             @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size
+            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(defaultValue = "") String busca
     ) {
-        Page<ClienteResponseDTO> pagina = clienteService.obterClientesPaginados(page, size);
+        Page<ClienteResponseDTO> pagina = clienteService.obterClientesPaginados(page, size, busca);
         return ResponseEntity.ok(pagina);
     }
 
