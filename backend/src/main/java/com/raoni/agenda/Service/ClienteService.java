@@ -114,11 +114,8 @@ public class ClienteService {
     public ClienteResponseDTO atualizar(Long id, ClienteRequestDTO dto) {
         Cliente cliente = clienteRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
-
-
         cliente.setNome(dto.nome());
-        cliente.setTelefone(dto.telefone());
-
+        cliente.setTelefone(normalizarTelefone(dto.telefone()));
         Cliente salvo = clienteRepository.save(cliente);
         return formatarResponseDTO(salvo);
     }
