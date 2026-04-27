@@ -25,7 +25,6 @@
         [(ngModel)]="cliente.telefone"
         mask="(00) 0000-0000||(00) 00000-0000"
         [dropSpecialCharacters]="true"
-        (ngModelChange)="aoDigitar($event)"
       />
     </div>
     <p *ngIf="cliente.telefone && cliente.telefone.length < 10" class="error-text">

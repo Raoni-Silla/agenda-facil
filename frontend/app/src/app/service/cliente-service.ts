@@ -24,8 +24,8 @@ export class ClienteService {
     return this.http.get<boolean>(`${this.apiUrl}/verificar`, { params });
   }
 
-  obterClientesPaginados(page: number, size: number): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/obterclientes?page=${page}&size=${size}`);
+  obterClientesPaginados(page: number, size: number, termo: string = ''): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/obterclientes?page=${page}&size=${size}&busca=${termo}`);
   }
 
   criarCliente(cliente: ClienteRequestDTO): Observable<ClienteResponseDTO> {

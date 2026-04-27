@@ -77,7 +77,7 @@ export class CriarCliente implements OnDestroy {
 
   }
 
-  salvarDados() {
+ salvarDados() {
     const cliente = this.clientesService.transformarClienteEmClienteRequest(
       this.nome,
       this.telefone,
@@ -94,9 +94,12 @@ export class CriarCliente implements OnDestroy {
       error: (err) => {
         console.error('Erro ao criar cliente:', err);
         this.isCreated = false;
+        
+       
+        const mensagemErro = err.error || 'Ocorreu um erro ao tentar salvar o cliente.';
+        alert('Atenção: ' + mensagemErro); 
       },
     });
   }
-
   
 }

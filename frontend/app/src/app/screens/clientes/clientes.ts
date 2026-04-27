@@ -27,22 +27,7 @@ export class Clientes implements OnInit {
   private sub: Subscription;
   corCard = '';
 
-  //clientes filtrados pega a lista que ja existe
-  clientesFiltrados = computed(() => {
-    const termo = this.termoBusca().toLowerCase(); //pega oque o usuario digitou e joga pra minusculo
-
-    if (!termo) {
-      //se o usuario nao digitou nada, carrega a lista normal
-      return this.clientes();
-    }
-
-    return this.clientes().filter(
-      (
-        cliente, //se não filtra pelo termo digitado
-      ) => cliente.nome.toLowerCase().includes(termo) || cliente.telefone.includes(termo),
-    );
-  });
-
+ 
   constructor(
     private clientesService: ClienteService,
     public themeService: ThemeService,
@@ -51,11 +36,12 @@ export class Clientes implements OnInit {
     this.sub = this.ouvidor
       .pipe(debounceTime(300), distinctUntilChanged())
       .subscribe((pesquisa) => {
-        this.termoBusca.set(pesquisa as string); //acorda a variavel signals
+        this.termoBusca.set(pesquisa as string); 
+        this.paginaAtual.set(0); 
+        this.carregarListaDeClientes(); 
       });
   }
 
-  //quando o usuario digita, o ouvidor acorda e a variavel com signals
   aoDigitarNaBusca(texto: string) {
     this.ouvidor.next(texto);
   }
@@ -66,17 +52,15 @@ export class Clientes implements OnInit {
   }
 
   carregarListaDeClientes() {
-    // Passamos o valor do signal paginaAtual()
-    this.clientesService.obterClientesPaginados(this.paginaAtual(), this.tamanhoPagina).subscribe({
-      next: (resposta) => {
-        // O Java manda os dados dentro de 'content'
-        this.clientes.set(resposta.content);
-
-        // Guardamos o total de páginas que o Java calculou pra nós
-        this.totalDePaginas.set(resposta.totalPages);
-      },
-      error: (err) => console.error(err),
-    });
+    this.clientesService
+      .obterClientesPaginados(this.paginaAtual(), this.tamanhoPagina, this.termoBusca())
+      .subscribe({
+        next: (resposta) => {
+          this.clientes.set(resposta.content);
+          this.totalDePaginas.set(resposta.totalPages);
+        },
+        error: (err) => console.error(err),
+      });
   }
 
   proximaPagina() {
@@ -104,8 +88,7 @@ export class Clientes implements OnInit {
   }
 
   deletarCliente(id: number | undefined) {
-    // Aceita undefined aqui
-    if (!id) return; // Se não tiver ID, nem continua
+    if (!id) return; 
 
     if (confirm('Tem certeza que deseja excluir este cliente?')) {
       this.clientesService.excluirCliente(id).subscribe({
