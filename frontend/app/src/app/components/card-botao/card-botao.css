@@ -1,0 +1,68 @@
+.card-container {
+  width: 350px; 
+  height: 220px;
+  
+  padding: 2rem;
+  border-radius: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  border: 1px solid transparent; 
+}
+
+.card-container:hover {
+  transform: translateY(-5px);
+}
+
+/* ESTILO GRADIENTE (Card Roxo) */
+.gradiente {
+  background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+  color: white;
+  border: 1px solid rgb(201, 201, 201);
+}
+.gradiente i { 
+    font-size: 3rem; 
+}
+
+/* ESTILO CLARO (Card Branco) */
+.claro {
+  background-color: white;
+  color: #1e293b;
+  border: 1px solid #f1f5f9; 
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgb(201, 201, 201);
+}
+
+.claro .icon-wrapper {
+  background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+  width: 55px;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  color: white;
+}
+
+
+a.card-container {
+  text-decoration: none;
+}
+
+
+a.card-container,
+a.card-container:visited,
+a.card-container:active {
+  text-decoration: none;
+}
+
+
+a.card-container.gradiente {
+  color: white;
+}
+
+a.card-container.claro {
+  color: #1e293b;
+}

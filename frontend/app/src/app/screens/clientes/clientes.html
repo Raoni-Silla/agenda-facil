@@ -1,0 +1,77 @@
+<div class="outsideBox">
+  <div class="firstInternalBox">
+    <div class="headerContent">
+      <h1>Clientes</h1>
+      <p>Sua base de clientes</p>
+    </div>
+    <button routerLink="/criarCliente">
+      <i class="fa fa-plus"></i>
+      Novo Cliente
+    </button>
+  </div>
+  <div class="inputDiv">
+    <i class="fa fa-search"></i>
+    <input
+      type="text"
+      placeholder="Buscar Cliente..."
+      [(ngModel)]="termoBusca"
+      (ngModelChange)="aoDigitarNaBusca($event)"
+    />
+  </div>
+</div>
+
+<div class="lista-clientes">
+  @for (cliente of clientesFiltrados(); track cliente.id) {
+    <div class="card-cliente">
+      <div class="avatar" [style.background-color]="themeService.getCorAleatoria()">
+        {{ pegarIniciais(cliente.nome) }}
+      </div>
+
+      <div class="info-cliente">
+        <h3 class="nome">{{ cliente.nome }}</h3>
+
+        <div class="telefone">
+          <i class="fa fa-phone"></i>
+          <span>{{ cliente.telefone | mask: '(00) 00000-0000' }}</span>
+        </div>
+
+        <div class="estatisticas">
+          <span class="visitas">
+            <i class="fa fa-star"></i> {{ cliente.totalVisitas }} visitas
+          </span>
+          <span class="ponto">•</span>
+          <span class="ultima-visita">
+            Última: {{ cliente.ultimaVisita | date: 'dd/MM/yyyy' }}
+          </span>
+        </div>
+      </div>
+
+      <div class="acao">
+        <button class="btn-editar" (click)="abrirModal(cliente)">
+          <i class="fa fa-edit"></i>
+        </button>
+        <button class="btn-excluir" (click)="deletarCliente(cliente.id)">
+          <i class="fa fa-trash"></i>
+        </button>
+      </div>
+    </div>
+  } @empty {
+    <p>Nenhum cliente encontrado.</p>
+  }
+</div>
+
+<div class="paginacao">
+  <button (click)="paginaAnterior()" [disabled]="paginaAtual() === 0">
+    <i class="fa fa-chevron-left"></i>
+    Anterior
+  </button>
+
+  <span>
+    Página <strong>{{ paginaAtual() + 1 }}</strong> de <strong>{{ totalDePaginas() }}</strong>
+  </span>
+
+  <button (click)="proximaPagina()" [disabled]="paginaAtual() >= totalDePaginas() - 1">
+    Próxima
+    <i class="fa fa-chevron-right"></i>
+  </button>
+</div>

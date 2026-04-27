@@ -1,0 +1,56 @@
+<div class="containerTitulos">
+  <h1><span class="tituloPrincipal">Bem-Vindo de volta!</span></h1>
+  <p><span class="subtituloPrincipal">Seus agendamentos de hoje</span></p>
+</div>
+<div class="gridCard">
+  <app-card-estatisticas titulo="Hoje"></app-card-estatisticas>
+  <app-card-estatisticas titulo="Semana" icone="fa fa-clock"></app-card-estatisticas>
+  <app-card-estatisticas titulo="Clientes" icone="fa fa-users"></app-card-estatisticas>
+  <app-card-estatisticas titulo="Total Ganho" icone="fas fa-chart-line"></app-card-estatisticas>
+  <app-card-estatisticas titulo="Faturamento" icone="fas fa-chart-line"></app-card-estatisticas>
+</div>
+<div class="proximosAgendamentos">
+  <div class="headerProximoAgendamento">
+    <h2>Próximos Agendamentos</h2>
+    <button>Ver Todos <i class="fa fa-arrow-right"></i></button>
+  </div>
+  <div>
+    <app-card-agendamento
+      nomeCliente="raoní silla"
+      servico="cabelo"
+      horas="17:00"
+      abreviacao="rs"
+    ></app-card-agendamento>
+    <app-card-agendamento
+      nomeCliente="eduardo josé"
+      servico="barba"
+      horas="12:00"
+      abreviacao="ej"
+    ></app-card-agendamento>
+    <app-card-agendamento
+      nomeCliente="gustavo silla"
+      servico="manicure"
+      horas="19:00"
+      abreviacao="gs"
+    ></app-card-agendamento>
+  </div>
+</div>
+
+<div class="gridBotao">
+  <app-card-botao
+    tema="gradiente"
+    icone="fa-calendar-plus"
+    titulo="Novo Agendamento"
+    subtitulo="Adicionar cliente"
+    rota="/criarAgendamento"
+  >
+  </app-card-botao>
+
+  <app-card-botao
+    tema="claro"
+    icone="fa-clock"
+    titulo="Ver Calendário"
+    subtitulo="Visão completa do mês"
+  >
+  </app-card-botao>
+</div>

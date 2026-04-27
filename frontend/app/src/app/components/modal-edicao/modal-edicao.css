@@ -1,0 +1,181 @@
+/* --- CONTAINER PRINCIPAL --- */
+.modal-wrapper {
+  padding: 16px 8px 8px 8px; /* Dá um respiro extra no topo */
+}
+
+/* --- HEADER --- */
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 28px;
+  padding: 0 16px; 
+}
+
+.modal-title {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #1e293b; /* Cinza bem escuro, quase preto */
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.btn-close-icon {
+  background: #f8fafc;
+  border: 1px solid transparent;
+  color: #64748b;
+  cursor: pointer;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  font-size: 1.1rem;
+}
+
+.btn-close-icon:hover {
+  background-color: #fee2e2; /* Fundo levemente vermelho no hover */
+  color: #ef4444; /* Ícone fica vermelho */
+  transform: scale(1.05);
+}
+
+/* --- BODY (Inputs) --- */
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 0 16px !important; /* Remove o padding padrão do Angular Material */
+  overflow: visible; 
+}
+
+.inputDiv {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background-color: #f8fafc;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0; 
+  transition: all 0.3s ease;
+}
+
+.inputDiv:hover {
+  background-color: #ffffff;
+  border-color: #cbd5e1; /* Borda aparece suavemente ao passar o mouse */
+}
+
+/* Ícones do FontAwesome */
+.inputDiv i {
+  color: #94a3b8; 
+  font-size: 1.1rem;
+  width: 20px; /* IMPORTANTE: Mantém os inputs alinhados */
+  text-align: center;
+  transition: color 0.3s ease; /* Animação suave de cor */
+}
+
+.inputDiv input {
+  border: none;
+  outline: none;
+  background: transparent;
+  flex: 1;
+  font-size: 1rem;
+  color: #334155;
+  font-weight: 500;
+  width: 100%;
+}
+
+.inputDiv input::placeholder {
+  color: #94a3b8;
+  font-weight: 400;
+}
+
+/* Efeito quando o usuário clica no Input */
+.inputDiv:focus-within {
+  background-color: #ffffff;
+  border-color: #a855f7; /* Borda roxa */
+  box-shadow: 0 0 0 4px rgba(168, 85, 247, 0.15); /* Brilho roxo suave */
+}
+
+/* O ícone também fica roxo quando o input está focado! */
+.inputDiv:focus-within i {
+  color: #a855f7;
+}
+
+/* --- FOOTER (Botões) --- */
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 36px;
+  padding: 0 16px 8px 16px;
+}
+
+/* Botão de Cancelar */
+.btn-ghost {
+  background: transparent;
+  border: 1px solid #e2e8f0;
+  color: #64748b;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-ghost:hover {
+  background-color: #f1f5f9;
+  color: #334155;
+  border-color: #cbd5e1;
+}
+
+/* Botão de Salvar */
+.btn-primary-gradient {
+  background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+  border: none;
+  color: white;
+  padding: 10px 24px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 12px rgba(168, 85, 247, 0.3);
+}
+
+.btn-primary-gradient:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(168, 85, 247, 0.5);
+}
+
+/* Estilo para as mensagens de erro */
+.error-text {
+  color: #ef4444;
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin: -12px 0 0 8px; /* Puxa o texto para ficar coladinho embaixo do input */
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+
+.input-error {
+  border-color: #fca5a5 !important;
+  background-color: #fef2f2 !important;
+}
+
+.input-error i {
+  color: #ef4444 !important;
+}
+
+
+.btn-primary-gradient:disabled {
+  background: #cbd5e1;
+  box-shadow: none;
+  cursor: not-allowed;
+  transform: none;
+  color: #f8fafc;
+}

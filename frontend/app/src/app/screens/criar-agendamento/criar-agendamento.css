@@ -1,0 +1,196 @@
+
+.avo {
+  background-color: #f8fafc; 
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+ 
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+/* O Card do Formulário (Mãe) */
+.mae {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 650px; 
+  background-color: white;
+  border-radius: 1rem; 
+  padding: 2.5rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgb(201, 201, 201);
+}
+
+
+.cabecalho {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1.5rem;
+  border-bottom: 1px solid rgb(201, 201, 201);
+  padding-bottom: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.cabecalho a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  color: #a855f7; 
+  font-size: 1.2rem;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.cabecalho a:hover {
+  background-color: rgba(168, 85, 247, 0.1);
+  transform: scale(1.05);
+}
+
+.cabecalho h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+
+
+.corpo {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem; 
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 0.5rem; 
+}
+
+.corpo label {
+  color: #526176; 
+  font-weight: 600;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.corpo label i {
+  color: #ec4899; 
+}
+
+.corpo input,
+.corpo select {
+  width: 100%;
+  padding: 0.9rem 1.2rem;
+  border-radius: 0.8rem;
+  background-color: rgb(247, 246, 246); 
+  border: 1px solid rgb(201, 201, 201);
+  color: #0f172b; 
+  font-family: inherit;
+  transition: all 0.2s ease-in-out;
+  box-sizing: border-box;
+}
+
+
+.corpo input:focus,
+.corpo select:focus {
+  outline: none;
+  border-color: #a855f7;
+  background-color: white;
+  box-shadow: 0 0 0 4px rgba(168, 85, 247, 0.15); 
+}
+
+
+.datas {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.horarios {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+
+@media (max-width: 600px) {
+  .datas,
+  .horarios {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}
+
+
+.botoes-acao {
+  display: flex;
+  justify-content: flex-end; 
+  gap: 1rem; 
+  margin-top: 1.5rem;
+  width: 100%;
+}
+
+
+.botoes-acao button {
+  padding: 0.8rem 2.5rem;
+  border-radius: 0.5rem; 
+  font-size: 1rem;
+  font-family: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem; 
+}
+
+
+.btn-cancelar {
+  background-color: white;
+  color: #0f172b;
+  border: 1px solid rgb(201, 201, 201);
+}
+
+.btn-cancelar:hover {
+  background-color: rgb(247, 246, 246); 
+}
+
+.btn-salvar {
+  background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+  color: white;
+  border: none;
+
+  box-shadow: 0 4px 10px -2px rgba(168, 85, 247, 0.4); 
+}
+
+.btn-salvar:hover {
+  transform: translateY(-2px); 
+  box-shadow: 0 6px 15px -2px rgba(168, 85, 247, 0.5);
+}
+
+
+@media (max-width: 600px) {
+  .botoes-acao {
+    flex-direction: column-reverse;
+  }
+  
+  .botoes-acao button {
+    width: 100%;
+  }
+}

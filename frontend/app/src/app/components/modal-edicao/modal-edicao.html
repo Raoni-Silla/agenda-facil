@@ -1,0 +1,47 @@
+<div class="modal-wrapper">
+  <div class="modal-header">
+    <h2 mat-dialog-title class="modal-title">Editar Cliente</h2>
+    <button mat-dialog-close class="btn-close-icon" title="Fechar">
+      <i class="fa fa-times"></i>
+    </button>
+  </div>
+
+  <mat-dialog-content class="modal-body">
+    <div class="inputDiv" [class.input-error]="cliente.nome && cliente.nome.trim().length < 3">
+      <i class="fa fa-user"></i>
+      <input type="text" [(ngModel)]="cliente.nome" name="nome" placeholder="Nome completo" />
+    </div>
+    <p *ngIf="cliente.nome && cliente.nome.trim().length < 3" class="error-text">
+      O nome precisa ter no mínimo 3 letras.
+    </p>
+
+    <div class="inputDiv" [class.input-error]="(cliente.telefone && cliente.telefone.length < 10) || isExist">
+      <i class="fa fa-phone"></i>
+      <input
+        type="text"
+        name="telefone"
+        id="telefone"
+        placeholder="(00) 00000-0000"
+        [(ngModel)]="cliente.telefone"
+        mask="(00) 0000-0000||(00) 00000-0000"
+        [dropSpecialCharacters]="true"
+        (ngModelChange)="aoDigitar($event)"
+      />
+    </div>
+    <p *ngIf="cliente.telefone && cliente.telefone.length < 10" class="error-text">
+      O telefone deve ter no mínimo 10 dígitos (DDD + número).
+    </p>
+    
+    <p *ngIf="isExist" class="error-text">
+      <i class="fa fa-exclamation-circle"></i> Este telefone já está cadastrado!
+    </p>
+
+  </mat-dialog-content>
+
+  <mat-dialog-actions class="modal-footer">
+    <button mat-dialog-close class="btn-ghost">Cancelar</button>
+    <button class="btn-primary-gradient" (click)="validarDados()" [disabled]="isExist">
+      Salvar Alterações
+    </button>
+  </mat-dialog-actions>
+</div>

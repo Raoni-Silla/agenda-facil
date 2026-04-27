@@ -1,0 +1,73 @@
+<div class="avo">
+  <div class="mae">
+    <div class="cabecalho">
+      <a [routerLink]="'/inicio'"><i class="fa fa-arrow-left"></i></a>
+      <h1>Novo Agendamento</h1>
+    </div>
+
+    <div class="corpo">
+   
+
+      <div class="form-group">
+        <label for="nome"><i class="fa fa-user"></i> Nome do Cliente</label>
+        <input
+          type="text"
+          name="nome"
+          id="nome"
+          placeholder="Digite o nome"
+       
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="telefone"><i class="fa fa-phone"></i> Telefone</label>
+        <input
+          type="text"
+          name="telefone"
+          id="telefone"
+          placeholder="(00) 00000-0000"
+         
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="servicos"><i class="fa fa-scissors"></i> Serviço</label>
+        <select id="servicos" name="servicos">
+          <option value="" disabled selected>Selecione o serviço</option>
+          <option value="volvo">Volvo</option>
+          <option value="saab">Saab</option>
+          <option value="fiat">Fiat</option>
+        </select>
+      </div>
+
+      <div class="datas">
+        <div class="form-group">
+          <label for="data"><i class="fa fa-calendar"></i> Data</label>
+          <input type="date" id="data" />
+        </div>
+
+        <div class="horarios">
+          <div class="form-group">
+            <label for="HorarioInicio"><i class="fa fa-clock"></i> Início</label>
+            <input type="time" name="HorarioInicio" id="HorarioInicio" />
+          </div>
+
+          <div class="form-group">
+            <label for="HorarioFim"><i class="fa fa-clock"></i> Fim</label>
+            <input type="time" name="HorarioFim" id="HorarioFim" />
+          </div>
+        </div>
+      </div>
+      <div class="botoes-acao">
+        <button type="button" class="btn-cancelar">Cancelar</button>
+
+        <button
+          type="submit"
+          class="btn-salvar"
+        >
+          <i class="fa fa-save"></i> Salvar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

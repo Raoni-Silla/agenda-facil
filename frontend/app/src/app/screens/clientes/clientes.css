@@ -1,0 +1,257 @@
+
+.outsideBox{
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.firstInternalBox {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.inputDiv {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #f2f2f7;
+  padding: 0.8rem 1rem;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+
+
+.inputDiv i {
+  color: #8e8e93; 
+  font-size: 1rem;
+}
+
+
+.inputDiv input {
+  border: none;
+  outline: none;
+  background: transparent;
+  flex: 1;
+  font-size: 1rem;
+  color: #1c1c1e;
+}
+
+
+.inputDiv input::placeholder {
+  color: #8e8e93;
+}
+
+
+.inputDiv:focus-within {
+  background-color: #fff;
+  border: 1px solid #a855f7; 
+  box-shadow: 0 0 0 3px rgba(255, 0, 217, 0.15);
+}
+
+.headerContent h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; /* Efeito de texto gradiente */
+  letter-spacing: -0.5px;
+}
+
+.headerContent p {
+  color: #526176;
+}
+
+.outsideBox button {
+  padding: 1rem;
+  background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+  border: 1px solid transparent;
+  color: white;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.outsideBox button:hover {
+  transform: translateY(-5px);
+}
+
+
+/* Container que engloba tudo, dá pra usar display: grid se quiser vários lado a lado */
+.lista-clientes {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 20px;
+}
+
+.card-cliente {
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 16px 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Sombra bem suave igual da foto */
+  gap: 20px;
+}
+
+/* O quadrado roxo com as iniciais */
+.avatar {
+  width: 56px;
+  height: 56px;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+}
+
+/* A área de texto */
+.info-cliente {
+  flex: 1; /* Ocupa o resto do espaço e empurra o botão pra direita */
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.nome {
+  margin: 0;
+  font-size: 18px;
+  color: #1a202c;
+  font-weight: 600;
+}
+
+.telefone {
+  color: #718096;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.estatisticas {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  color: #718096;
+  margin-top: 4px;
+}
+
+.visitas {
+  color: #2d3748;
+  font-weight: 600;
+}
+
+.visitas i {
+  color: #f6ad55; /* Cor da estrelinha laranja */
+}
+
+.ponto {
+  color: #cbd5e0;
+}
+
+/* O botão com borda roxa */
+.btn-ver-mais {
+  background: transparent;
+  border: 1px solid #9b51e0;
+  color: #9b51e0;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-ver-mais:hover {
+  background-color: #9b51e0;
+  color: white;
+}
+
+.paginacao {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-top: 30px;
+  padding: 20px 0;
+  border-top: 1px solid #f2f2f7; /* Uma linha bem sutil para separar da lista */
+}
+
+.paginacao button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0.6rem 1.2rem;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  color: #a855f7; /* Cor roxa da sua paleta */
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.paginacao button:hover:not(:disabled) {
+  background-color: #fdf2ff;
+  border-color: #a855f7;
+  transform: translateY(-2px);
+}
+
+.paginacao button:disabled {
+  color: #cbd5e0;
+  border-color: #edf2f7;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.paginacao span {
+  font-size: 0.9rem;
+  color: #526176;
+  font-weight: 500;
+  background-color: #f2f2f7;
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+}
+
+.btn-excluir {
+  background: transparent;
+  border: 1px solid #feb2b2;
+  color: #f56565; 
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-excluir:hover {
+  background-color: #f56565;
+  color: white;
+}
+
+.acao{
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
+.btn-editar {
+  background: transparent;
+  border: 1px solid #a855f7;
+  color: #a855f7;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-editar:hover {
+  background-color: #a855f7;
+  color: white;
+}

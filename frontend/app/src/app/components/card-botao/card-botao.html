@@ -1,0 +1,27 @@
+<a *ngIf="rota; else cardNormal" [routerLink]="rota" class="card-container" [ngClass]="tema">
+  
+  <div [class.icon-wrapper]="tema === 'claro'">
+    <i [ngClass]="['fa', icone]"></i>
+  </div>
+
+  <div class="text-content">
+    <h2>{{ titulo }}</h2>
+    <p>{{ subtitulo }}</p>
+  </div>
+
+</a>
+
+<ng-template #cardNormal>
+  <div class="card-container" [ngClass]="tema">
+
+    <div [class.icon-wrapper]="tema === 'claro'">
+      <i [ngClass]="['fa', icone]"></i>
+    </div>
+
+    <div class="text-content">
+      <h2>{{ titulo }}</h2>
+      <p>{{ subtitulo }}</p>
+    </div>
+
+  </div>
+</ng-template>

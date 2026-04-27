@@ -1,0 +1,43 @@
+<div class="outsideBox">
+  <div class="firstInternalBox">
+    <div class="headerContent">
+      <h1>Serviços</h1>
+      <p>Serviços Oferecidos</p>
+    </div>
+    <button routerLink="/criarServico">
+      <i class="fa fa-plus"></i>
+      Novo Serviço
+    </button>
+  </div>
+</div>
+
+<div class="containerGeral">
+  <div class="containerEstilo">
+      <div class="avatar" [style.background-color]="themeService.getCorAleatoria()">
+          <i class="fa fa-scissors"></i>
+      </div>
+      
+      <h3>Corte Masculino</h3>
+      
+      <div class="info-servico">
+          <div class="containerFlex">
+              <div class="containerInternoFlex">
+                <i class="fa fa-clock"></i>
+                <p>Duração</p>
+              </div>
+              <h4><b>30</b> min</h4>
+          </div>
+          
+          <div class="containerFlex">
+              <div class="containerInternoFlex">
+                <i class="fa fa-coins"></i> <p>Valor</p>
+              </div>
+              <h4><b>50</b>,00</h4>
+          </div>
+      </div>
+      
+      <button>
+        <i class="fa fa-edit"></i> Editar
+      </button>
+  </div>
+</div>

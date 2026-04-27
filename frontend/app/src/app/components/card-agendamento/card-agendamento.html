@@ -1,0 +1,16 @@
+<div class="containerGeral">
+  <div class="containerAbvNome">
+      <div class="containerInterno">
+        <div class="abreviacao" [style.--cor-card]="corCard">
+          <h2>{{abreviacao | uppercase}}</h2>
+        </div>
+        <div class="containerNomeServico">
+            <h3>{{nomeCliente | titlecase}}</h3>
+            <p>{{servico}}</p>
+        </div>
+      </div>
+  </div>
+  <div class="horas">
+    <h3>{{horas}}</h3>
+  </div>
+</div>

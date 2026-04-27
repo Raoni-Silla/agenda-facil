@@ -1,0 +1,67 @@
+.tituloPrincipal {
+  font-size: 3rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; /* Efeito de texto gradiente */
+  letter-spacing: -0.5px;
+}
+
+.subtituloPrincipal {
+  color: #526176;
+}
+
+.containerTitulos {
+  margin-bottom: 3rem;
+}
+
+.gridCard {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.proximosAgendamentos {
+  margin-top: 3rem;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  background-color: rgb(247, 246, 246);
+  border: 1px solid rgb(201, 201, 201);
+  height: auto;
+  width: 100%;
+}
+
+.headerProximoAgendamento {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.headerProximoAgendamento h2 {
+  color: #0f172b;
+}
+
+.headerProximoAgendamento button {
+  background-color: transparent;
+  border: none;
+  color: purple;
+  transition:
+    background-color 0.3s ease,
+    transform 0.2s ease;
+  padding: 10px;
+  border-radius: 3rem;
+}
+
+.headerProximoAgendamento button:hover {
+  background-color: rgba(255, 0, 255, 0.297);
+  transform: scale(1.05);
+  border-radius: 3rem;
+}
+
+.gridBotao {
+  margin-top: 50px;
+  display: flex;
+  justify-content: space-around;
+}

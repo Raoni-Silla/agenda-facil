@@ -1,0 +1,58 @@
+<div class="avo">
+  <div class="mae">
+    <div class="cabecalho">
+      <a [routerLink]="'/clientes'"><i class="fa fa-arrow-left"></i></a>
+      <h1>Novo Cliente</h1>
+    </div>
+
+    <form class="corpo" (ngSubmit)="validarDados()">
+      <p *ngIf="isCreated" class="sucesso">Cliente criado com sucesso!</p>
+      <p *ngIf="isExist" style="color: #e74c3c; font-weight: bold;">
+        <i class="fa fa-warning"></i> Este telefone já está cadastrado!
+      </p>
+
+      <div class="form-group">
+        <label for="nome"><i class="fa fa-user"></i> Nome do Cliente</label>
+        <input type="text" name="nome" id="nome" placeholder="Digite o nome" [(ngModel)]="nome" />
+        <p *ngIf="nome && nome.trim().length < 3" style="color: red">
+          O nome precisa ter no mínimo 3 letras
+        </p>
+      </div> <div class="form-group">
+        <label for="telefone"><i class="fa fa-phone"></i> Telefone</label>
+        <input
+          type="text"
+          name="telefone"
+          id="telefone"
+          placeholder="(00) 00000-0000"
+          [(ngModel)]="telefone"
+          (ngModelChange)="aoDigitar($event)" 
+          mask="(00) 0000-0000||(00) 00000-0000"
+          [dropSpecialCharacters]="true"
+        />
+
+        <p *ngIf="telefone && telefone.length < 10" style="color: red">
+          O telefone deve ter no mínimo 10 dígitos (DDD + número)
+        </p>
+      </div>
+
+      <div class="botoes-acao">
+        <button type="button" class="btn-cancelar" [routerLink]="'/clientes'">Cancelar</button>
+
+        <button
+          [disabled]="
+            !telefone ||
+            telefone.length < 10 ||
+            !nome ||
+            nome.trim().length < 3 ||
+            isExist
+          "
+          type="submit"
+          class="btn-salvar"
+        >
+          <i class="fa fa-save"></i> Salvar
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+

@@ -1,0 +1,57 @@
+.container{
+    background-color: rgb(247, 246, 246);
+    border: 1px solid rgb(201, 201, 201);
+    padding: 2rem;
+    height: auto;
+    width: 200px;
+    border-radius: 1.5rem;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.backgroundIcone{
+    background:  var(--cor-card);
+    padding: 10px;
+    border-radius: 10px;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+p{
+    color: #526176;
+    font-size: small;
+}
+
+i{
+    color: white;
+
+}
+
+h2{
+    font-weight: bold;
+    color: #0F172B;
+}
+
+
+.container:hover {
+    transform: scale(1.05); 
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1); 
+}
+
+.container:hover .backgroundIcone {
+    transform: scale(1.1);
+    filter: brightness(1.1); 
+}
+
+
+.container:hover p {
+    color: #334155; 
+}
+
+.backgroundIcone, p, h2 {
+    transition: transform 0.3s ease;
+}

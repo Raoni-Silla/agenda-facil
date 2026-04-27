@@ -1,0 +1,42 @@
+footer {
+    width: calc(100% - 260px); 
+    margin-left: 260px; 
+    padding: 1.5rem 2rem;
+    background-color: #ffffff;
+    border-top: 1px solid #f1f5f9;
+    font-family: 'Inter', sans-serif;
+    color: #64748b;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+}
+
+.credits, .tech-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.credits strong {
+    color: #7c3aed; 
+    font-weight: 600;
+}
+
+.code-icon {
+    stroke: #94a3b8;
+}
+
+.heart-icon {
+    animation: pulse 1.5s infinite;
+}
+
+.copyright {
+    color: #94a3b8;
+    font-size: 0.8rem;
+}
+
+
