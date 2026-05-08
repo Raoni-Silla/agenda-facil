@@ -19,4 +19,9 @@ public interface ClienteRepository extends JpaRepository<Cliente, Long> {
 
     // Verifica se o telefone existe, MAS ignorando o ID passado (usado na hora de EDITAR um cliente)
     boolean existsByTelefoneAndIdNot(String telefone, Long id);
+
+    @Query("SELECT COUNT(c) FROM Cliente c")
+    long countTotalClientes();
+
+    Optional<Cliente> findByNome(String nome);
 }

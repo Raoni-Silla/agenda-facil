@@ -11,5 +11,5 @@ public record ClienteResponseDTO(
         String nome,
         String telefone,
         int totalVisitas,
-        LocalDateTime ultimaVisita
+        LocalDate ultimaVisita
 ) {}

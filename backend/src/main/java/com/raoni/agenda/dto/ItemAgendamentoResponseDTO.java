@@ -1,4 +1,10 @@
 package com.raoni.agenda.dto;
 
-public record ItemAgendamentoResponseDTO() {
+import java.math.BigDecimal;
+
+public record ItemAgendamentoResponseDTO(
+        Long id,
+        ServicoResponseDTO servico,
+        BigDecimal valorCobrado
+) {
 }

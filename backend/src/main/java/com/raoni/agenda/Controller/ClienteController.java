@@ -54,4 +54,10 @@ public class ClienteController {
         return ResponseEntity.ok(atualizado);
     }
 
+    @GetMapping("/{nome}")
+    public ResponseEntity<ClienteResponseDTO> getClientePeloNome(@PathVariable String nome){
+        ClienteResponseDTO clienteEncontrado = clienteService.obterClientePorNome(nome);
+        return ResponseEntity.ok(clienteEncontrado);
+    }
+
 }

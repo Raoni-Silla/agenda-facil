@@ -1,24 +1,36 @@
 package com.raoni.agenda.Repository;
 
+import com.raoni.agenda.Enums.StatusAgendamento;
 import com.raoni.agenda.Model.Agendamento;
+import com.raoni.agenda.Model.Cliente;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.util.List;
 
 public interface AgendamentoRepository extends JpaRepository<Agendamento, Long> {
 
-    @Query("SELECT COUNT(a) FROM Agendamento a WHERE a.dataHora >= :inicio AND a.dataHora <= :fim")
-    long countAgendamentosDoDia(LocalDateTime inicio, LocalDateTime fim);
+    long countByData(LocalDate data);
 
-    @Query("SELECT COUNT(a) FROM Agendamento a WHERE a.dataHora >= :inicioSemana AND a.dataHora <= :fimSemana")
-    long countAgendamentosDaSemana(LocalDateTime inicioSemana, LocalDateTime fimSemana);
+    long countByDataBetween(LocalDate inicioSemana, LocalDate fimSemana);
 
-    @Query("SELECT COUNT(c) FROM Cliente c")
-    long countTotalClientes();
-
-    @Query("SELECT SUM(a.valorPago) FROM Agendamento a WHERE a.status = 'CONCLUIDO'")
+    @Query("SELECT SUM(a.valorTotal) FROM Agendamento a WHERE a.status = 'CONCLUIDO'")
     BigDecimal somarFaturamentoBruto();
 
+    List<Agendamento> findByData(LocalDate data);
+
+    @Query("SELECT DISTINCT a FROM Agendamento a " +
+            "LEFT JOIN a.itens i " +
+            "LEFT JOIN i.servico s " +
+            "WHERE LOWER(a.cliente.nome) LIKE LOWER(CONCAT('%', :busca, '%')) " +
+            "OR a.cliente.telefone LIKE CONCAT('%', :busca, '%') " +
+            "OR LOWER(s.nome) LIKE LOWER(CONCAT('%', :busca, '%'))")
+    Page<Agendamento> pesquisarPorNomeOuTelefone(@Param("busca") String busca, Pageable paginacao);
+
+    Page<Agendamento> findAllByStatus(StatusAgendamento statusAgendamento, Pageable paginacao);
 }

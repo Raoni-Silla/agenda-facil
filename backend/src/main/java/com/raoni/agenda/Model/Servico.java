@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -36,6 +37,4 @@ public class Servico {
     @NotNull(message = "A duração é obrigatória")
     private Integer duracaoMinutos;
 
-    @OneToMany(mappedBy = "servico")
-    private List<Agendamento> agendamentos;
 }
