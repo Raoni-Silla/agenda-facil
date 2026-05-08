@@ -1,0 +1,59 @@
+<div class="modal-wrapper">
+  <div class="modal-header">
+    <h2 mat-dialog-title class="modal-title">Editar Serviço</h2>
+    <button mat-dialog-close class="btn-close-icon" title="Fechar">
+      <i class="fa fa-times"></i>
+    </button>
+  </div>
+
+  <mat-dialog-content class="modal-body">
+    <div class="inputDiv" [class.input-error]="servico.nome && servico.nome.trim().length < 3">
+      <i class="fa fa-tag"></i>
+      <input type="text" [(ngModel)]="servico.nome" name="nome" placeholder="Nome do Serviço" />
+    </div>
+    <p *ngIf="servico.nome && servico.nome.trim().length < 3" class="error-text">
+      O nome precisa ter no mínimo 3 letras.
+    </p>
+
+    <div class="inputDiv" [class.input-error]="servico.valor <= 0">
+      <i class="fa fa-dollar-sign"></i>
+      <input 
+        type="text" 
+        [(ngModel)]="servico.valor" 
+        name="valor" 
+        placeholder="Valor (Ex: 50.00)" 
+        mask="separator.2" 
+        thousandSeparator="." 
+        decimalMarker="," 
+        prefix="R$ "
+      />
+    </div>
+    <p *ngIf="servico.valor <= 0" class="error-text">
+      O valor deve ser maior que zero.
+    </p>
+
+    <div class="inputDiv" [class.input-error]="servico.duracaoMinutos <= 0">
+      <i class="fa fa-clock"></i>
+      <input 
+        type="number" 
+        [(ngModel)]="servico.duracaoMinutos" 
+        name="duracao" 
+        placeholder="Duração em minutos" 
+      />
+    </div>
+    <p *ngIf="servico.duracaoMinutos <= 0" class="error-text">
+      A duração deve ser informada.
+    </p>
+
+    <p *ngIf="isExist" class="error-text">
+      <i class="fa fa-exclamation-circle"></i> Este serviço já está cadastrado!
+    </p>
+  </mat-dialog-content>
+
+  <mat-dialog-actions class="modal-footer">
+    <button mat-dialog-close class="btn-ghost">Cancelar</button>
+    <button class="btn-primary-gradient" (click)="validarDados()" [disabled]="isExist">
+      Salvar Alterações
+    </button>
+  </mat-dialog-actions>
+</div>

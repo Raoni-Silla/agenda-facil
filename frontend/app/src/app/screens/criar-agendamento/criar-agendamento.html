@@ -1,21 +1,24 @@
 <div class="avo">
   <div class="mae">
     <div class="cabecalho">
-      <a [routerLink]="'/inicio'"><i class="fa fa-arrow-left"></i></a>
+      <a [routerLink]="'/agenda'"><i class="fa fa-arrow-left"></i></a>
       <h1>Novo Agendamento</h1>
     </div>
 
     <div class="corpo">
-   
-
       <div class="form-group">
+        <div class="error" *ngIf="isExist === false">
+          <p>Não foi possivel encontrar algum cliente com o nome de {{ nomeCliente }}</p>
+          <p>Por favor, Preencha o telefone pra criarmos um novo cliente</p>
+        </div>
         <label for="nome"><i class="fa fa-user"></i> Nome do Cliente</label>
         <input
           type="text"
           name="nome"
           id="nome"
           placeholder="Digite o nome"
-       
+          [(ngModel)]="nomeCliente"
+          (ngModelChange)="aoDigitarNome($event)"
         />
       </div>
 
@@ -26,47 +29,116 @@
           name="telefone"
           id="telefone"
           placeholder="(00) 00000-0000"
-         
+          mask="(00) 0000-0000||(00) 00000-0000"
+          [dropSpecialCharacters]="true"
+          [(ngModel)]="telefoneCliente"
+          (ngModelChange)="aoDigitarTelefone($event)"
+          [disabled]="isInputBloqueado || nomeCliente.trim() === ''"
         />
       </div>
 
       <div class="form-group">
-        <label for="servicos"><i class="fa fa-scissors"></i> Serviço</label>
-        <select id="servicos" name="servicos">
-          <option value="" disabled selected>Selecione o serviço</option>
-          <option value="volvo">Volvo</option>
-          <option value="saab">Saab</option>
-          <option value="fiat">Fiat</option>
-        </select>
+        <label for="busca-servico"><i class="fa fa-scissors"></i> Serviço</label>
+
+        <div class="input-wrapper">
+          <input
+            id="busca-servico"
+            name="busca-servico"
+            type="text"
+            placeholder="Digite o nome do serviço..."
+            [(ngModel)]="termoBuscaServico"
+            (input)="aoDigitarServico($any($event.target).value)"
+            autocomplete="off"
+            class="input-padrao"
+          />
+
+          @if (servicosFiltrados().length > 0) {
+            <ul class="dropdown-sugestoes">
+              @for (item of servicosFiltrados(); track item.id) {
+                <li (click)="selecionarServico(item)">
+                  <span class="nome-servico">{{ item.nome }}</span>
+                  <span class="preco-servico">{{ item.valor | currency: 'BRL' }}</span>
+                </li>
+              }
+            </ul>
+          }
+        </div>
+
+        <div class="container-chips">
+          @for (servico of servicosSelecionados(); track servico.id) {
+            <div class="chip-item">
+              {{ servico.nome }}
+              <span class="btn-fechar" (click)="removerServico(servico)">&times;</span>
+            </div>
+          }
+        </div>
       </div>
 
       <div class="datas">
         <div class="form-group">
           <label for="data"><i class="fa fa-calendar"></i> Data</label>
-          <input type="date" id="data" />
+          <input type="date" id="data" [(ngModel)]="data" />
         </div>
 
         <div class="horarios">
           <div class="form-group">
             <label for="HorarioInicio"><i class="fa fa-clock"></i> Início</label>
-            <input type="time" name="HorarioInicio" id="HorarioInicio" />
+            <input
+              type="time"
+              name="HorarioInicio"
+              id="HorarioInicio"
+              [ngModel]="horarioInicio()"
+              (ngModelChange)="horarioInicio.set($event)"
+              class="input-padrao"
+            />
           </div>
 
           <div class="form-group">
             <label for="HorarioFim"><i class="fa fa-clock"></i> Fim</label>
-            <input type="time" name="HorarioFim" id="HorarioFim" />
+
+            <div class="input-wrapper">
+              <input
+                type="time"
+                name="HorarioFim"
+                id="HorarioFim"
+                [(ngModel)]="horarioFim"
+                (input)="marcarComoManual()"
+                class="input-padrao"
+              />
+
+              <!-- Pequeno aviso se o usuário mudou manualmente -->
+              @if (isHorarioFimManual) {
+                <small class="aviso-manual" (click)="resetarParaSugestao()">
+                  Customizado (clique para voltar ao sugerido: {{ horarioFimSugerido() }})
+                </small>
+              }
+            </div>
           </div>
         </div>
       </div>
+
+      <div class="containerConclusaoFinal">
+        @for (servico of servicosSelecionados(); track servico.id) {
+          <div class="servicosListados">
+            <h3>{{ servico.nome }}</h3>
+            <p>{{ servico.valor | currency: 'BRL' }}</p>
+          </div>
+        }
+
+        <div class="resumo-horario">
+          <span>Duração total: {{ duracaoTotal() }} min</span>
+          <span>Previsão de término: {{ horarioFimSugerido() }}</span>
+        </div>
+        <h1>
+          <span>Total:</span>
+          <span>{{ valorTotal() | currency: 'BRL' }}</span>
+        </h1>
+      </div>
+
       <div class="botoes-acao">
         <button type="button" class="btn-cancelar">Cancelar</button>
 
-        <button
-          type="submit"
-          class="btn-salvar"
-        >
-          <i class="fa fa-save"></i> Salvar
-        </button>
+        <button type="submit" class="btn-salvar" (click)="validarDados()"><i class="fa fa-save"></i> Salvar</button>
       </div>
     </div>
   </div>

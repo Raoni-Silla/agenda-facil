@@ -9,35 +9,68 @@
       Novo Serviço
     </button>
   </div>
+  <div class="inputDiv">
+    <i class="fa fa-search"></i>
+    <input
+      type="text"
+      placeholder="Buscar Serviço..."
+      [(ngModel)]="termoBusca"
+      (ngModelChange)="aoDigitarNaBusca($event)"
+    />
+  </div>
 </div>
 
 <div class="containerGeral">
-  <div class="containerEstilo">
-      <div class="avatar" [style.background-color]="themeService.getCorAleatoria()">
-          <i class="fa fa-scissors"></i>
+  @for (servico of servicos(); track servico.id) {
+    <div class="containerEstilo">
+      <div class="avatar" [style.--cor-card]="corCard">
+        <i class="fa fa-scissors"></i>
       </div>
-      
-      <h3>Corte Masculino</h3>
-      
+
+      <h3>{{ servico.nome }}</h3>
+
       <div class="info-servico">
-          <div class="containerFlex">
-              <div class="containerInternoFlex">
-                <i class="fa fa-clock"></i>
-                <p>Duração</p>
-              </div>
-              <h4><b>30</b> min</h4>
+        <div class="containerFlex">
+          <div class="containerInternoFlex">
+            <i class="fa fa-clock"></i>
+            <p>Duração</p>
           </div>
-          
-          <div class="containerFlex">
-              <div class="containerInternoFlex">
-                <i class="fa fa-coins"></i> <p>Valor</p>
-              </div>
-              <h4><b>50</b>,00</h4>
+          <h4>
+            <b>{{ servico.duracaoMinutos }}</b> min
+          </h4>
+        </div>
+
+        <div class="containerFlex">
+          <div class="containerInternoFlex">
+            <i class="fa fa-coins"></i>
+            <p>Valor</p>
           </div>
+          <h4>{{ servico.valor | currency: 'BRL' : 'symbol' : '1.2-2' }}</h4>
+        </div>
       </div>
-      
-      <button>
-        <i class="fa fa-edit"></i> Editar
+
+      <button (click)="abrirModal(servico)"><i class="fa fa-edit"></i> Editar</button>
+      <button class="btn-excluir" (click)="deletarServico(servico.id)">
+        <i class="fa fa-trash"></i> Excluir
       </button>
-  </div>
+    </div>
+  } @empty {
+    <p>Nenhum Serviço encontrado.</p>
+  }
+</div>
+
+<div class="paginacao">
+  <button (click)="paginaAnterior()" [disabled]="paginaAtual() === 0">
+    <i class="fa fa-chevron-left"></i>
+    Anterior
+  </button>
+
+  <span>
+    Página <strong>{{ paginaAtual() + 1 }}</strong> de <strong>{{ totalDePaginas() }}</strong>
+  </span>
+
+  <button (click)="proximaPagina()" [disabled]="paginaAtual() >= totalDePaginas() - 1">
+    Próxima
+    <i class="fa fa-chevron-right"></i>
+  </button>
 </div>

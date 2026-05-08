@@ -1,0 +1,166 @@
+/* ================= CONTAINER GERAL ================= */
+.calendario-wrapper {
+  max-width: 950px;
+  margin: 0 auto;
+  padding: 40px;
+  background-color: #f8fafc; /* Fundo cinza super claro pra destacar o branco */
+  border-radius: 30px;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* ================= CABEÇALHO ================= */
+.cabecalho-calendario {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  padding: 0 10px;
+}
+
+/* Título com Gradiente Moderno */
+.titulo-mes {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.titulo-mes .mes {
+  font-size: 2.5rem;
+  font-weight: 800; /* Poppins ExtraBold */
+  letter-spacing: -1px;
+  text-transform: capitalize;
+  background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.titulo-mes .ano {
+  font-size: 2.2rem;
+  font-weight: 300; /* Poppins Light */
+  color: #94a3b8;
+  letter-spacing: -0.5px;
+}
+
+/* Botões de Navegação */
+.controles {
+  display: flex;
+  gap: 12px;
+}
+
+.btn-controle {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  color: #64748b;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+}
+
+.btn-controle:hover {
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+  color: #a855f7; /* Ícone fica roxo no hover */
+  border-color: #cbd5e1;
+}
+
+/* ================= ANULANDO A BIBLIOTECA (LIMPANDO O LIXO) ================= */
+::ng-deep .cal-month-view { background-color: transparent !important; border: none !important; }
+::ng-deep .cal-month-view .cal-header { border-bottom: none !important; }
+::ng-deep .cal-days { border: none !important; }
+::ng-deep .cal-days .cal-cell-row { border-bottom: none !important; }
+
+/* Cabeçalho dos dias da semana (Dom, Seg...) */
+::ng-deep .cal-month-view .cal-header .cal-cell {
+  font-weight: 600;
+  color: #475569;
+  font-size: 15px;
+  padding-bottom: 25px;
+  text-transform: capitalize;
+}
+
+/* Limpando as células da tabela pra virarem "espaço" */
+::ng-deep .cal-month-view .cal-day-cell {
+  border: none !important;
+  background: transparent !important;
+  padding: 8px !important; /* Esse padding cria o vão entre os cards */
+}
+::ng-deep .cal-month-view .cal-day-cell:not(:last-child) { border-right: none !important; }
+
+/* Esconde os dias que não são do mês atual (Fica clean) */
+::ng-deep .cal-month-view .cal-day-cell.cal-out-month {
+  visibility: hidden !important; 
+  pointer-events: none;
+}
+
+/* ================= OS CARDS FLUTUANTES (O SEGREDO) ================= */
+.dia-card {
+  background: #ffffff;
+  border-radius: 20px;
+  aspect-ratio: 1 / 1; /* Força ser um quadrado perfeito */
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.04);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Animação mais suave */
+  border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+.dia-card:hover {
+  transform: translateY(-5px) scale(1.02); /* Levanta e dá um zoom bem leve */
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+}
+
+/* O número do dia */
+.numero-dia {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #1e293b;
+  text-align: left;
+}
+
+/* ================= A PÍLULA DE AGENDAMENTOS ================= */
+.pilula-wrapper {
+  display: flex;
+  justify-content: center; /* Centraliza a pílula embaixo */
+  width: 100%;
+}
+
+.pilula {
+  background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-align: center;
+  border-radius: 20px;
+  padding: 4px 18px;
+  box-shadow: 0 4px 12px rgba(236, 72, 153, 0.3);
+}
+
+/* ================= DIA DE HOJE (DESTAQUE MÁXIMO) ================= */
+.dia-card.ativo {
+  background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+  box-shadow: 0 12px 30px rgba(168, 85, 247, 0.4);
+  border: none;
+}
+
+.dia-card.ativo .numero-dia {
+  color: #ffffff;
+}
+
+.dia-card.ativo .pilula {
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: none;
+  backdrop-filter: blur(4px); /* Efeito de vidro moderno na pílula */
+}

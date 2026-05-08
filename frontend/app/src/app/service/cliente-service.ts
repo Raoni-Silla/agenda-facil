@@ -38,4 +38,8 @@ export class ClienteService {
   atualizarCliente(id: number, cliente: ClienteRequestDTO): Observable<ClienteResponseDTO> {
     return this.http.put<ClienteResponseDTO>(`${this.apiUrl}/${id}`, cliente);
   }
+
+  getClientePeloNome(nome : string) :Observable<ClienteResponseDTO> {
+    return this.http.get<ClienteResponseDTO>(`${this.apiUrl}/${nome}`)
+  }
 }

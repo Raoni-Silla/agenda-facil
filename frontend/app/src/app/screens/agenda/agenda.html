@@ -1,0 +1,65 @@
+<div class="outsideBox">
+  <div class="firstInternalBox">
+    <div class="headerContent">
+      <h1>Agendamentos</h1>
+      <p>Gerencie seus horários</p>
+    </div>
+    <button routerLink="/criarAgendamento">
+      <i class="fa fa-plus"></i>
+      Novo Agendamento
+    </button>
+  </div>
+  <div class="inputDiv">
+    <i class="fa fa-search"></i>
+    <input
+      type="text"
+      placeholder="Buscar Cliente ou serviço..."
+      [(ngModel)]="termoBusca"
+      (ngModelChange)="aoDigitarNaBusca($event)"
+    />
+  </div>
+</div>
+
+<div class="filtros">
+  <button (click)="filtrarTodos()">Todos</button>
+  <button (click)="filtrarConcluidos()">Concluidos</button>
+  <button (click)="filtrarPendentes()">Pendentes</button>
+</div>
+
+<div class="agenda-container">
+  @for (agendamento of agendamentos(); track agendamento.idAgendamento) {
+    <div class="card-agendamento">
+      <div class="avatar">
+        {{ pegarIniciais(agendamento.cliente.nome) }}
+      </div>
+
+      <div class="info-container">
+        <h3 class="cliente-nome">{{ agendamento.cliente.nome | titlecase }}</h3>
+        <p class="servicos-lista">{{ formatarItens(agendamento.itens) | titlecase }}</p>
+
+        <div class="detalhes-footer">
+          <span class="data">{{ agendamento.data | date: 'dd/MM/yyyy' }}</span>
+          <span class="separador">•</span>
+          <span class="hora">{{ agendamento.horaInicio }}</span>
+          <span class="separador">•</span>
+          <span class="valor">{{ agendamento.valorTotal | currency: 'BRL' }}</span>
+          <span class="separador">•</span>
+          <span class="status" [ngClass]="'status-' + agendamento.status">
+            {{ agendamento.status }}
+          </span>
+        </div>
+      </div>
+
+      <div class="acoes" (click)="concluir(agendamento.idAgendamento)">
+        <button class="btn-check" title="Confirmar">
+          <i class="fa-solid fa-check"></i>
+        </button>
+        <button class="btn-cancel" (click)="excluir(agendamento.idAgendamento)">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+    </div>
+  } @empty{
+  <p>A lista de está vazia</p>
+  }
+</div>

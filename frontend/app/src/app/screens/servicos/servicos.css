@@ -54,6 +54,9 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent; /* Efeito de texto gradiente */
   letter-spacing: -0.5px;
+  line-height: 1.3; 
+  padding-top: 10px; 
+  padding-bottom: 5px; 
 }
 
 .headerContent p {
@@ -164,4 +167,52 @@
   justify-content: center;
   align-items: center;
   border-radius: 12px;
+  background-color: var(--cor-card);
+}
+
+.paginacao {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-top: 30px;
+  padding: 20px 0;
+  border-top: 1px solid #f2f2f7; /* Uma linha bem sutil para separar da lista */
+}
+
+.paginacao button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0.6rem 1.2rem;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  color: #a855f7; /* Cor roxa da sua paleta */
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.paginacao button:hover:not(:disabled) {
+  background-color: #fdf2ff;
+  border-color: #a855f7;
+  transform: translateY(-2px);
+}
+
+.paginacao button:disabled {
+  color: #cbd5e0;
+  border-color: #edf2f7;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.paginacao span {
+  font-size: 0.9rem;
+  color: #526176;
+  font-weight: 500;
+  background-color: #f2f2f7;
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
 }

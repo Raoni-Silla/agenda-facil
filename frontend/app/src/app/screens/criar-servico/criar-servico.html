@@ -5,52 +5,76 @@
       <h1>Novo Serviço</h1>
     </div>
 
-    <form class="corpo">
-      
+    <form class="corpo" #formServico="ngForm" (ngSubmit)="onSubmit(formServico)">
       <div class="form-group">
-        <label for="nome">
-          <i class="fa fa-scissors"></i> Nome do Serviço
-        </label>
-        <input 
-          type="text" 
-          name="nome" 
-          id="nome" 
-          placeholder="Ex: Corte Degradê" 
+        <div class="error" *ngIf="isExist">
+          <p>O serviço que você esta tentando adicionar já existe</p>
+        </div>
+        <label for="nome"> <i class="fa fa-scissors"></i> Nome do Serviço </label>
+        <input
+          type="text"
+          name="nome"
+          id="nome"
+          placeholder="Ex: Corte Degradê"
+          [(ngModel)]="nome"
+          (ngModelChange)="verificarValidade()" 
+          #nomeModel="ngModel"
         />
+        <div
+          class="error"
+          *ngIf="(nomeModel.dirty || nomeModel.touched) && (nome?.trim() || '').length < 3"
+        >
+          <p>
+            <i class="fa fa-warning"></i>
+            O nome do serviço precisa ter mais que 3 letras
+          </p>
+        </div>
       </div>
 
       <div class="form-row">
         <div class="form-group">
-          <label for="valor">
-            <i class="fa fa-dollar-sign"></i> Valor (R$)
-          </label>
+          <label for="valor"> <i class="fa fa-dollar-sign"></i> Valor (R$) </label>
           <input
-            type="text"
+            type="number"
             name="valor"
             id="valor"
             placeholder="00,00"
+            [(ngModel)]="valor"
+            (ngModelChange)="verificarValidade()"
+            #valorModel="ngModel"
           />
+          <div class="error" *ngIf="(valorModel.dirty || valorModel.touched) && valor <= 0">
+            <p>
+              <i class="fa fa-warning"></i>
+              O valor do serviço precisa ser maior que 0 R$
+            </p>
+          </div>
         </div>
 
-        <div class="form-group" style="margin-top: 20px;">
-          <label for="tempo">
-            <i class="fa fa-clock"></i> Duração (min)
-          </label>
+        <div class="form-group" style="margin-top: 20px">
+          <label for="duracao"> <i class="fa fa-clock"></i> Duração (min) </label>
           <input
             type="number"
-            name="tempo"
-            id="tempo"
+            name="duracao"
+            id="duracao"
             placeholder="30"
+            [(ngModel)]="duracao"
+            (ngModelChange)="verificarValidade()"
+            #duracaoModel="ngModel"
           />
+          <div class="error" *ngIf="(duracaoModel.dirty || duracaoModel.touched) && duracao <= 0">
+            <p>
+              <i class="fa fa-warning"></i>
+              A duração deve ser maior que 0
+            </p>
+          </div>
         </div>
       </div>
 
       <div class="botoes-acao">
-        <button type="button" class="btn-cancelar" [routerLink]="['/servicos']">
-          Cancelar
-        </button>
+        <button type="button" class="btn-cancelar" [routerLink]="['/servicos']">Cancelar</button>
 
-        <button type="submit" class="btn-salvar">
+        <button type="submit" class="btn-salvar" [disabled]="isNotValid">
           <i class="fa fa-save"></i> Salvar Serviço
         </button>
       </div>

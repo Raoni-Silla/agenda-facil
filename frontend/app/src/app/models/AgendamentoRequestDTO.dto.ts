@@ -1,8 +1,7 @@
 export interface AgendamentoRequestDTO {
-  telefoneCliente: string;
-  nomeCliente: string;
-  servico: string;
+  idCliente: number;
   data: string;
   horaInicio: string;
   horaFim: string;
+  servicos: number[];
 }

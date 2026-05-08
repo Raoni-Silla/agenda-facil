@@ -1,0 +1,252 @@
+/* ================= ESTRUTURA GERAL ================= */
+.outsideBox {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.firstInternalBox {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.headerContent h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; 
+  letter-spacing: -0.5px;
+  line-height: 1.3;
+  padding-top: 10px; 
+  padding-bottom: 5px;
+}
+
+.headerContent p {
+  color: #526176;
+}
+
+.outsideBox button {
+  padding: 1rem;
+  background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+  border: 1px solid transparent;
+  color: white;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.outsideBox button:hover {
+  transform: translateY(-5px);
+}
+
+/* ================= BUSCA ================= */
+.inputDiv {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #f2f2f7;
+  padding: 0.8rem 1rem;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.inputDiv i {
+  color: #8e8e93; 
+  font-size: 1rem;
+}
+
+.inputDiv input {
+  border: none;
+  outline: none;
+  background: transparent;
+  flex: 1;
+  font-size: 1rem;
+  color: #1c1c1e;
+}
+
+.inputDiv:focus-within {
+  background-color: #fff;
+  border: 1px solid #a855f7; 
+  box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.15);
+}
+
+/* ================= FILTROS ================= */
+.filtros {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: row;
+    gap: 5px; 
+    background-color: #f8fafc; 
+    border: 1px solid #e2e8f0; 
+    border-radius: 50px; 
+    padding: 6px;
+    width: max-content; 
+}
+
+.filtros button {
+    background-color: transparent;
+    border: none;
+    padding: 8px 24px;
+    border-radius: 40px; 
+    font-size: 14px;
+    font-weight: 600;
+    color: #64748b; 
+    cursor: pointer;
+    transition: all 0.3s ease; 
+}
+
+.filtros button.ativo {
+    background-color: #ffffff; 
+    color: #a855f7; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* ================= CONTAINER DA AGENDA ================= */
+.agenda-container {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* ================= O CARD PRINCIPAL ================= */
+.card-agendamento {
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  padding: 20px 24px;
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04); 
+  gap: 20px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: 1px solid #f8fafc;
+}
+
+.card-agendamento:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.avatar {
+  width: 65px;
+  height: 65px;
+  background: #a855f7; 
+  color: #ffffff;
+  font-size: 22px;
+  font-weight: 700;
+  border-radius: 16px; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.info-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.cliente-nome {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #0f172a; 
+}
+
+.servicos-lista {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #64748b; 
+}
+
+/* ================= RODAPÉ E STATUS ================= */
+.detalhes-footer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: #94a3b8;
+  margin-top: 4px;
+}
+
+.separador {
+  color: #cbd5e1;
+}
+
+.valor {
+  color: #10b981; 
+  font-weight: 700;
+}
+
+.status {
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+/* Estilização Dinâmica dos Status (Baseado no Enum/String do Backend) */
+.status-PENDENTE {
+  background-color: #fef3c7;
+  color: #d97706;
+}
+
+.status-CONCLUIDO {
+  background-color: #dcfce7;
+  color: #15803d;
+}
+
+.status-CANCELADO {
+  background-color: #fee2e2;
+  color: #b91c1c;
+}
+
+/* ================= BOTÕES DE AÇÃO ================= */
+.acoes {
+  display: flex;
+  gap: 12px;
+}
+
+.btn-check, .btn-cancel {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.2s ease;
+  border: 1.5px solid;
+}
+
+.btn-check {
+  border-color: #10b981;
+  color: #10b981;
+}
+
+.btn-check:hover {
+  background: #10b981;
+  color: #ffffff;
+  box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3);
+}
+
+.btn-cancel {
+  border-color: #ef4444;
+  color: #ef4444;
+}
+
+.btn-cancel:hover {
+  background: #ef4444;
+  color: #ffffff;
+  box-shadow: 0 4px 10px rgba(239, 68, 68, 0.3);
+}

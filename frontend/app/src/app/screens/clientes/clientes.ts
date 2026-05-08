@@ -10,10 +10,11 @@ import { ThemeService } from '../../service/theme-service';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalEdicao } from '../../components/modal-edicao/modal-edicao';
 
+
 @Component({
   selector: 'app-clientes',
   standalone: true,
-  imports: [RouterLink, CommonModule, FormsModule, NgxMaskDirective, NgxMaskPipe],
+  imports: [RouterLink, CommonModule, FormsModule, NgxMaskDirective, NgxMaskPipe, ModalEdicao],
   templateUrl: './clientes.html',
   styleUrl: './clientes.css',
 })
@@ -98,11 +99,11 @@ export class Clientes implements OnInit {
     }
   }
 
-  abrirModal(cliente: any) {
-    if (!cliente) return;
+  abrirModal(servico: any) {
+    if (!servico) return;
     const referenciaDoModal = this.dialog.open(ModalEdicao, {
       width: '400px',
-      data: { clienteSelecionado: cliente },
+      data: { servicoSelecionado: servico },
     });
 
     referenciaDoModal.afterClosed().subscribe((resultado) => {

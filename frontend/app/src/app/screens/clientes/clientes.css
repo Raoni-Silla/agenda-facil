@@ -59,6 +59,9 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent; /* Efeito de texto gradiente */
   letter-spacing: -0.5px;
+  line-height: 1.3;
+  padding-top: 10px; 
+  padding-bottom: 5px;
 }
 
 .headerContent p {

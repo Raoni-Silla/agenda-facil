@@ -1,0 +1,37 @@
+<div class="calendario-wrapper">
+  
+  <div class="cabecalho-calendario">
+    <h1 class="titulo-mes">
+      <span class="mes">{{ dataAtual | date: 'MMMM' }}</span>
+      <span class="ano">{{ dataAtual | date: 'yyyy' }}</span>
+    </h1>
+    
+    <div class="controles">
+      <button class="btn-controle" (click)="mudarMes(-1)">
+        <i class="fa fa-chevron-left"></i>
+      </button>
+      <button class="btn-controle" (click)="mudarMes(1)">
+        <i class="fa fa-chevron-right"></i>
+      </button>
+    </div>
+  </div>
+
+  <mwl-calendar-month-view
+    [viewDate]="dataAtual"
+    locale="pt-BR"
+    [cellTemplate]="meuMolde">
+  </mwl-calendar-month-view>
+
+</div>
+
+<ng-template #meuMolde let-day="day" let-locale="locale">
+  <div class="dia-card" [class.ativo]="day.isToday">
+    
+    <span class="numero-dia">{{ day.date | date:'d' }}</span>
+    
+    <div class="pilula-wrapper">
+      <div class="pilula">5</div>
+    </div>
+
+  </div>
+</ng-template>
