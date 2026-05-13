@@ -3,6 +3,7 @@ package com.raoni.agenda.Repository;
 import com.raoni.agenda.Enums.StatusAgendamento;
 import com.raoni.agenda.Model.Agendamento;
 import com.raoni.agenda.Model.Cliente;
+import com.raoni.agenda.dto.AgendamentoResumoDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -33,4 +34,10 @@ public interface AgendamentoRepository extends JpaRepository<Agendamento, Long> 
     Page<Agendamento> pesquisarPorNomeOuTelefone(@Param("busca") String busca, Pageable paginacao);
 
     Page<Agendamento> findAllByStatus(StatusAgendamento statusAgendamento, Pageable paginacao);
+
+    @Query("SELECT a.data as data, COUNT(a) as total " +
+            "FROM Agendamento a " +
+            "WHERE a.data BETWEEN :inicio AND :fim " +
+            "GROUP BY a.data")
+    List<AgendamentoResumoDTO> contarPorPeriodo(LocalDate inicio, LocalDate fim);
 }

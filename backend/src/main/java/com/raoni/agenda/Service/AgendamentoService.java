@@ -17,9 +17,16 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.temporal.TemporalAdjuster;
+import java.time.temporal.TemporalAdjusters;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -204,4 +211,46 @@ public class AgendamentoService {
         }
     }
 
+    public long getQuantidadeDeAgendamentosHoje(){
+        return agendamentoRepository.countByData(LocalDate.now());
+    }
+
+    public long getQuantidadeAgendamentoSemana(){
+        LocalDate hoje = LocalDate.now();
+        LocalDate segunda = hoje.with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
+        LocalDate sabado = hoje.with(TemporalAdjusters.nextOrSame(DayOfWeek.SATURDAY));
+        return agendamentoRepository.countByDataBetween(segunda, sabado);
+    }
+
+    public long getTotalDeClientes (){
+        return  clienteRepository.countTotalClientes();
+    }
+
+    public BigDecimal getTotalGanho(){
+        return agendamentoRepository.somarFaturamentoBruto();
+    }
+
+    public BigDecimal getTotalFaturado() {
+        BigDecimal faturamentoBruto = Optional.ofNullable(agendamentoRepository.somarFaturamentoBruto())
+                .orElse(BigDecimal.ZERO);
+
+        BigDecimal resultado = faturamentoBruto.subtract(BigDecimal.valueOf(5));
+
+        // Se o resultado for menor que zero, retorna zero para não quebrar o dashboard
+        return resultado.compareTo(BigDecimal.ZERO) < 0 ? BigDecimal.ZERO : resultado;
+    }
+
+    public List<AgendamentoResponseDTO> obterProximosAgendamentos(){
+        List <Agendamento> agendamentos = agendamentoRepository.findByData(LocalDate.now()).stream().sorted(Comparator.comparing(Agendamento::getData)).toList();
+        return agendamentos.stream().map(this::criarResponseDTO).toList();
+    }
+
+
+    public Map<String, Long> buscarResumoMensal(LocalDate inicio, LocalDate fim) {
+        List<AgendamentoResumoDTO> lista = agendamentoRepository.contarPorPeriodo(inicio, fim);
+        return lista.stream().collect(Collectors.toMap(
+                item -> item.getData().toString(), // Chave: "2026-05-13"
+                AgendamentoResumoDTO::getTotal    // Valor: 5
+        ));
+    }
 }

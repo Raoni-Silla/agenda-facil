@@ -6,8 +6,15 @@ import com.raoni.agenda.dto.AgendamentoResponseDTO;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 @RestController
 @RequiredArgsConstructor
@@ -63,5 +70,50 @@ public class AgendamentoController {
     public ResponseEntity<Void> deletarAgendamento(@PathVariable Long id) {
         service.excluirAgendamento(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/obter-agendamentos-hoje")
+    public ResponseEntity<Long> getAgendamentosParaHoje(){
+        long agendamentosParaHoje = service.getQuantidadeDeAgendamentosHoje();
+        return ResponseEntity.ok(agendamentosParaHoje);
+    }
+
+    @GetMapping("/obter-agendamentos-semana")
+    public ResponseEntity<Long> getAgendamentosDaSemana (){
+        long agendamentosDaSemana = service.getQuantidadeAgendamentoSemana();
+        return ResponseEntity.ok(agendamentosDaSemana);
+    }
+
+    @GetMapping("/obter-total-clientes")
+    public ResponseEntity<Long> getTotalClientes (){
+        long totalClientes = service.getTotalDeClientes();
+        return ResponseEntity.ok(totalClientes);
+    }
+
+    @GetMapping("/total-ganho")
+    public ResponseEntity<BigDecimal> getTotalGanho (){
+        BigDecimal totalGanho = service.getTotalGanho();
+        return ResponseEntity.ok(Objects.requireNonNullElse(totalGanho, BigDecimal.ZERO));
+    }
+
+    @GetMapping("/total-faturamento")
+    public ResponseEntity<BigDecimal> getFaturamento(){
+        BigDecimal faturamento = service.getTotalFaturado();
+        return ResponseEntity.ok(Objects.requireNonNullElse(faturamento, BigDecimal.ZERO));
+    }
+
+    @GetMapping("/obter-proximos-agendamentos")
+    public ResponseEntity<List<AgendamentoResponseDTO>> obterProximosAgendamentos(){
+        List<AgendamentoResponseDTO> agendamentosHoje = service.obterProximosAgendamentos();
+        return ResponseEntity.ok(agendamentosHoje);
+    }
+
+    @GetMapping("/obter-resumo-mensal")
+    public ResponseEntity<Map<String, Long>> buscarResumoMensal(
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate inicio,
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fim) {
+
+        Map<String, Long> resumo =service.buscarResumoMensal(inicio,fim);
+        return ResponseEntity.ok(resumo);
     }
 }
