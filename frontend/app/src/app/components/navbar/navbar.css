@@ -11,8 +11,9 @@ nav {
     height: 100vh;
     width: 260px; 
     border-right: 1px solid #f1f5f9;
+    box-sizing: border-box;
+    transition: all 0.3s ease-in-out;
 }
-
 
 .logo-container {
     display: flex;
@@ -29,12 +30,12 @@ nav {
     align-items: center;
     justify-content: center;
     box-shadow: 0 4px 12px rgba(168, 85, 247, 0.3);
+    flex-shrink: 0;
 }
-
 
 .logo-icon svg {
     stroke: white;
-    background: transparent; /* Remova o gradient daqui */
+    background: transparent; 
     fill: none;
 }
 
@@ -49,7 +50,7 @@ nav {
     background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
     background-clip: text;
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent; /* Efeito de texto gradiente */
+    -webkit-text-fill-color: transparent; 
     letter-spacing: -0.5px;
 }
 
@@ -58,13 +59,13 @@ nav {
     color: #94a3b8;
 }
 
-
 .containerLinks ul {
     list-style: none;
     display: flex;
     flex-direction: column;
     gap: 0.5rem; 
     padding: 0;
+    margin: 0;
 }
 
 .containerLinks ul li a {
@@ -78,15 +79,14 @@ nav {
     transition: all 0.3s ease;
 }
 
-
 .containerLinks ul li a svg {
     margin-right: 12px;
     stroke: #475569;
-    background: transparent; /* Garante que não tem fundo */
-    fill: none; /* Garante que o ícone é vazado */
+    background: transparent; 
+    fill: none; 
     transition: all 0.3s ease;
+    flex-shrink: 0;
 }
-
 
 .containerLinks ul li a:hover, 
 .containerLinks ul li a.active {
@@ -97,6 +97,79 @@ nav {
 
 .containerLinks ul li a:hover svg,
 .containerLinks ul li a.active svg {
-    background: transparent; /* NUNCA use background aqui */
-    stroke: white; /* O ícone fica branco e "vazado" sobre o fundo rosa */
+    background: transparent; 
+    stroke: white; 
+}
+
+/* --- Responsividade --- */
+
+@media (max-width: 992px) {
+    nav {
+        width: 100%;
+        height: auto;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 1.5rem;
+        border-right: none;
+        border-bottom: 1px solid #f1f5f9;
+        gap: 1rem;
+    }
+
+    .containerLinks {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .containerLinks ul {
+        flex-direction: row;
+        gap: 1rem;
+    }
+
+    .containerLinks ul li a {
+        white-space: nowrap;
+        padding: 10px 14px;
+    }
+}
+
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1rem;
+        gap: 1.5rem;
+    }
+
+    .containerLinks {
+        width: 100%;
+    }
+
+    .containerLinks ul {
+        justify-content: flex-start;
+        padding-bottom: 0.5rem; 
+    }
+}
+
+@media (max-width: 576px) {
+    .logo-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .brand-name {
+        font-size: 1.2rem;
+    }
+
+    .brand-subtext {
+        font-size: 0.75rem;
+    }
+
+    .containerLinks ul li a {
+        font-size: 0.9rem;
+        padding: 8px 12px;
+    }
+    
+    .containerLinks ul li a svg {
+        margin-right: 8px;
+    }
 }

@@ -3,37 +3,46 @@
   <p><span class="subtituloPrincipal">Seus agendamentos de hoje</span></p>
 </div>
 <div class="gridCard">
-  <app-card-estatisticas titulo="Hoje"></app-card-estatisticas>
-  <app-card-estatisticas titulo="Semana" icone="fa fa-clock"></app-card-estatisticas>
-  <app-card-estatisticas titulo="Clientes" icone="fa fa-users"></app-card-estatisticas>
-  <app-card-estatisticas titulo="Total Ganho" icone="fas fa-chart-line"></app-card-estatisticas>
-  <app-card-estatisticas titulo="Faturamento" icone="fas fa-chart-line"></app-card-estatisticas>
+  <app-card-estatisticas titulo="Hoje" [valor]="agendamentosHoje()"></app-card-estatisticas>
+  <app-card-estatisticas
+    titulo="Semana"
+    [valor]="agendamentosSemana()"
+    icone="fa fa-clock"
+  ></app-card-estatisticas>
+  <app-card-estatisticas
+    titulo="Clientes"
+    [valor]="totalClientes()"
+    icone="fa fa-users"
+  ></app-card-estatisticas>
+  <app-card-estatisticas
+    titulo="Total Ganho"
+    [valor]="totalGanho()"
+    icone="fas fa-chart-line"
+  ></app-card-estatisticas>
+  <app-card-estatisticas
+    titulo="Faturamento"
+    [valor]="faturamento()"
+    icone="fas fa-hand-holding-usd"
+  ></app-card-estatisticas>
 </div>
 <div class="proximosAgendamentos">
   <div class="headerProximoAgendamento">
-    <h2>Próximos Agendamentos</h2>
-    <button>Ver Todos <i class="fa fa-arrow-right"></i></button>
+    <h2>Agendamentos Para Hoje</h2>
+    <button routerLink="/agenda">Ver Todos <i class="fa fa-arrow-right"></i></button>
   </div>
-  <div>
-    <app-card-agendamento
-      nomeCliente="raoní silla"
-      servico="cabelo"
-      horas="17:00"
-      abreviacao="rs"
-    ></app-card-agendamento>
-    <app-card-agendamento
-      nomeCliente="eduardo josé"
-      servico="barba"
-      horas="12:00"
-      abreviacao="ej"
-    ></app-card-agendamento>
-    <app-card-agendamento
-      nomeCliente="gustavo silla"
-      servico="manicure"
-      horas="19:00"
-      abreviacao="gs"
-    ></app-card-agendamento>
-  </div>
+  
+  @for (agendamento of proximosAgendamentos(); track agendamento.idAgendamento) {
+    <div>
+      <app-card-agendamento
+        [nomeCliente]="agendamento.cliente.nome"
+        [servico]="agendamento.itens[0]?.servico?.nome || 'Sem serviço'"
+        [horas]="formatarHora(agendamento.horaInicio)"
+        abreviacao="RS"
+      ></app-card-agendamento>
+    </div>
+  } @empty {
+    <p>Sem agendamentos para hoje</p>
+  }
 </div>
 
 <div class="gridBotao">
@@ -51,7 +60,7 @@
     icone="fa-clock"
     titulo="Ver Calendário"
     subtitulo="Visão completa do mês"
-    routerLink="/calendario" 
+    routerLink="/calendario"
   >
   </app-card-botao>
 </div>

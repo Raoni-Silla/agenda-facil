@@ -3,6 +3,7 @@
   display: flex;
   flex-direction: column;
   gap: 40px;
+  box-sizing: border-box;
 }
 
 .firstInternalBox {
@@ -108,7 +109,7 @@
 
 /* ================= CONTAINER DA AGENDA ================= */
 .agenda-container {
-  padding: 20px;
+  padding: 20px 0;
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -170,6 +171,7 @@
 .detalhes-footer {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 8px;
   font-size: 0.85rem;
   color: #94a3b8;
@@ -193,7 +195,7 @@
   text-transform: uppercase;
 }
 
-/* Estilização Dinâmica dos Status (Baseado no Enum/String do Backend) */
+/* Estilização Dinâmica dos Status */
 .status-PENDENTE {
   background-color: #fef3c7;
   color: #d97706;
@@ -249,4 +251,91 @@
   background: #ef4444;
   color: #ffffff;
   box-shadow: 0 4px 10px rgba(239, 68, 68, 0.3);
+}
+
+button.ativo {
+  background: #2563eb;
+  color: white;
+}
+
+/* ================= RESPONSIVIDADE ================= */
+
+@media (max-width: 992px) {
+  .firstInternalBox {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .headerContent h1 {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .headerContent h1 {
+    font-size: 2rem;
+  }
+
+  .filtros {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+  }
+
+  .card-agendamento {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .acoes {
+    width: 100%;
+    justify-content: flex-end;
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 576px) {
+  .outsideBox {
+    gap: 25px;
+  }
+
+  .headerContent h1 {
+    font-size: 1.8rem;
+  }
+
+  .outsideBox button {
+    width: 100%;
+  }
+
+  .filtros button {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+
+  .card-agendamento {
+    padding: 16px;
+  }
+
+  .avatar {
+    width: 50px;
+    height: 50px;
+    font-size: 18px;
+  }
+
+  .cliente-nome {
+    font-size: 1rem;
+  }
+
+  .acoes {
+    justify-content: space-between;
+  }
+
+  .btn-check, .btn-cancel {
+    width: 40px;
+    height: 40px;
+    font-size: 14px;
+  }
 }

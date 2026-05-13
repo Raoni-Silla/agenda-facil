@@ -1,6 +1,7 @@
 /* --- CONTAINER PRINCIPAL --- */
 .modal-wrapper {
   padding: 16px 8px 8px 8px; /* Dá um respiro extra no topo */
+  box-sizing: border-box;
 }
 
 /* --- HEADER --- */
@@ -161,7 +162,6 @@
   gap: 4px;
 }
 
-
 .input-error {
   border-color: #fca5a5 !important;
   background-color: #fef2f2 !important;
@@ -171,11 +171,57 @@
   color: #ef4444 !important;
 }
 
-
 .btn-primary-gradient:disabled {
   background: #cbd5e1;
   box-shadow: none;
   cursor: not-allowed;
   transform: none;
   color: #f8fafc;
+}
+
+/* --- Responsividade --- */
+
+@media (max-width: 576px) {
+  .modal-wrapper {
+    padding: 12px 4px 4px 4px;
+  }
+
+  .modal-header {
+    margin-bottom: 20px;
+    padding: 0 12px;
+  }
+
+  .modal-title {
+    font-size: 1.25rem;
+  }
+
+  .btn-close-icon {
+    width: 32px;
+    height: 32px;
+    font-size: 1rem;
+  }
+
+  .modal-body {
+    gap: 16px;
+    padding: 0 12px !important;
+  }
+
+  .inputDiv {
+    padding: 12px 14px;
+  }
+
+  .modal-footer {
+    flex-direction: column-reverse;
+    gap: 10px;
+    margin-top: 24px;
+    padding: 0 12px 4px 12px;
+  }
+
+  .btn-ghost, 
+  .btn-primary-gradient {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    padding: 12px 20px;
+  }
 }

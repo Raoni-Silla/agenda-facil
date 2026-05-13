@@ -1,10 +1,10 @@
-import { TitleCasePipe, UpperCasePipe } from '@angular/common';
+import { DatePipe, TitleCasePipe, UpperCasePipe } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { ThemeService } from '../../service/theme-service';
 
 @Component({
   selector: 'app-card-agendamento',
-  imports: [TitleCasePipe, UpperCasePipe],
+  imports: [TitleCasePipe, UpperCasePipe, DatePipe],
   templateUrl: './card-agendamento.html',
   styleUrl: './card-agendamento.css',
 })

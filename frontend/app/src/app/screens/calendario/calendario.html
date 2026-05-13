@@ -29,9 +29,14 @@
     
     <span class="numero-dia">{{ day.date | date:'d' }}</span>
     
-    <div class="pilula-wrapper">
-      <div class="pilula">5</div>
-    </div>
+    <!-- Renderiza a pílula apenas se a contagem for maior que 0 -->
+    @if (obterTotalDoDia(formatarDataIso(day.date)) > 0) {
+      <div class="pilula-wrapper">
+        <div class="pilula">
+          {{ obterTotalDoDia(formatarDataIso(day.date)) }}
+        </div>
+      </div>
+    }
 
   </div>
 </ng-template>

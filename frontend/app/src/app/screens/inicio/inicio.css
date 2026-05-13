@@ -4,10 +4,8 @@
   background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
   background-clip: text;
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent; /* Efeito de texto gradiente */
+  -webkit-text-fill-color: transparent; 
   letter-spacing: -0.5px;
-
-  /* --- A CORREÇÃO AQUI --- */
   line-height: 1.3; 
   padding-top: 10px; 
   padding-bottom: 5px; 
@@ -25,6 +23,8 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  gap: 20px;
+  flex-wrap: wrap;
 }
 
 .proximosAgendamentos {
@@ -35,17 +35,20 @@
   border: 1px solid rgb(201, 201, 201);
   height: auto;
   width: 100%;
+  box-sizing: border-box;
 }
 
 .headerProximoAgendamento {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   width: 100%;
 }
 
 .headerProximoAgendamento h2 {
   color: #0f172b;
+  margin: 0;
 }
 
 .headerProximoAgendamento button {
@@ -57,16 +60,82 @@
     transform 0.2s ease;
   padding: 10px;
   border-radius: 3rem;
+  cursor: pointer;
 }
 
 .headerProximoAgendamento button:hover {
   background-color: rgba(255, 0, 255, 0.297);
   transform: scale(1.05);
-  border-radius: 3rem;
 }
 
 .gridBotao {
   margin-top: 50px;
   display: flex;
   justify-content: space-around;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+/* ================= RESPONSIVIDADE ================= */
+
+@media (max-width: 992px) {
+  .tituloPrincipal {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .tituloPrincipal {
+    font-size: 2rem;
+  }
+
+  .containerTitulos {
+    margin-bottom: 2rem;
+  }
+
+  .gridCard {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .gridBotao {
+    margin-top: 30px;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .proximosAgendamentos {
+    margin-top: 2rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .tituloPrincipal {
+    font-size: 1.8rem;
+  }
+
+  .subtituloPrincipal {
+    font-size: 0.9rem;
+  }
+
+  .proximosAgendamentos {
+    padding: 1rem;
+    border-radius: 1rem;
+  }
+
+  .headerProximoAgendamento {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .headerProximoAgendamento button {
+    align-self: flex-start;
+    padding: 8px 12px;
+    font-size: 0.9rem;
+  }
+
+  .gridBotao {
+    margin-top: 20px;
+  }
 }

@@ -69,7 +69,6 @@ export class CriarAgendamento implements OnDestroy {
     this.isHorarioFimManual = true;
   }
 
-  // Opcional: botão para voltar ao horário sugerido
   resetarParaSugestao() {
     this.isHorarioFimManual = false;
     this.horarioFim = this.horarioFimSugerido();
@@ -294,6 +293,7 @@ transformarAgendamentoEmAgendamentoRequest(): AgendamentoRequestDTO {
         console.log('Sucesso no Agenda Fácil!', resposta);
         alert('Agendamento realizado com sucesso!');
         this.limparFormulario();
+        this.agendamentoService.notificarMudanca();
       },
       error: (err) => {
         alert('Conflito: Verifique se o horário escolhido já está ocupado.');

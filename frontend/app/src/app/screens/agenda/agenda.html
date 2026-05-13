@@ -21,9 +21,9 @@
 </div>
 
 <div class="filtros">
-  <button (click)="filtrarTodos()">Todos</button>
-  <button (click)="filtrarConcluidos()">Concluidos</button>
-  <button (click)="filtrarPendentes()">Pendentes</button>
+  <button (click)="filtrarTodos()" [class.ativo]="Todos">Todos</button>
+  <button (click)="filtrarConcluidos()" [class.ativo]="Concluido" >Concluidos</button>
+  <button (click)="filtrarPendentes()" [class.ativo]="Pendente" >Pendentes</button>
 </div>
 
 <div class="agenda-container">

@@ -1,10 +1,8 @@
-
 .avo {
   background-color: #f8fafc; 
   min-height: 100vh;
   display: flex;
   justify-content: center;
- 
   padding: 2rem;
   box-sizing: border-box;
 }
@@ -20,8 +18,8 @@
   padding: 2.5rem;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
   border: 1px solid rgb(201, 201, 201);
+  box-sizing: border-box;
 }
-
 
 .cabecalho {
   display: flex;
@@ -45,6 +43,7 @@
   border-radius: 50%;
   text-decoration: none;
   transition: background-color 0.3s ease, transform 0.2s ease;
+  flex-shrink: 0;
 }
 
 .cabecalho a:hover {
@@ -60,12 +59,10 @@
   background-clip: text;
   -webkit-text-fill-color: transparent;
   margin: 0;
-
   line-height: 1.3;
   padding-top: 5px;
   padding-bottom: 5px;
 }
-
 
 .corpo {
   display: flex;
@@ -106,7 +103,6 @@
   box-sizing: border-box;
 }
 
-
 .corpo input:focus,
 .corpo select:focus {
   outline: none;
@@ -114,7 +110,6 @@
   background-color: white;
   box-shadow: 0 0 0 4px rgba(168, 85, 247, 0.15); 
 }
-
 
 .datas {
   display: flex;
@@ -130,16 +125,6 @@
   width: 100%;
 }
 
-
-@media (max-width: 600px) {
-  .datas,
-  .horarios {
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-}
-
-
 .botoes-acao {
   display: flex;
   justify-content: flex-end; 
@@ -147,7 +132,6 @@
   margin-top: 1.5rem;
   width: 100%;
 }
-
 
 .botoes-acao button {
   padding: 0.8rem 2.5rem;
@@ -163,7 +147,6 @@
   gap: 0.5rem; 
 }
 
-
 .btn-cancelar {
   background-color: white;
   color: #0f172b;
@@ -178,7 +161,6 @@
   background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
   color: white;
   border: none;
-
   box-shadow: 0 4px 10px -2px rgba(168, 85, 247, 0.4); 
 }
 
@@ -187,18 +169,7 @@
   box-shadow: 0 6px 15px -2px rgba(168, 85, 247, 0.5);
 }
 
-
-@media (max-width: 600px) {
-  .botoes-acao {
-    flex-direction: column-reverse;
-  }
-  
-  .botoes-acao button {
-    width: 100%;
-  }
-}
-
-.error{
+.error {
   background-color: rgba(255, 0, 0, 0.29);
   color: red;
   border-left: 5px solid red;
@@ -223,6 +194,7 @@
   outline: none;
   transition: all 0.3s ease;
   background-color: #fff;
+  box-sizing: border-box;
 }
 
 .input-padrao:focus {
@@ -241,10 +213,10 @@
 .chip-item {
   display: inline-flex;
   align-items: center;
-  background: #f3ebff; /* Roxo muito claro */
-  color: #6a1b9a;      /* Roxo forte para contraste */
+  background: #f3ebff; 
+  color: #6a1b9a;      
   padding: 6px 12px;
-  border-radius: 8px;  /* Menos arredondado que o padrão, mais moderno */
+  border-radius: 8px;  
   font-size: 13.5px;
   font-weight: 500;
   border: 1px solid #e1bee7;
@@ -291,6 +263,7 @@
   padding: 6px;
   list-style: none;
   overflow: hidden;
+  margin: 0;
 }
 
 .dropdown-sugestoes li {
@@ -327,18 +300,16 @@
   to { opacity: 1; transform: scale(1); }
 }
 
-.containerConclusaoFinal{
+.containerConclusaoFinal {
   display: flex;
   flex-direction: column;
   gap: 10px;
-}
-
-.containerConclusaoFinal {
   background-color: #fcfaff;
-  border: 1.5px dashed #d1b3ff; /* Borda tracejada dá um ar de 'recibo/resumo' */
+  border: 1.5px dashed #d1b3ff; 
   border-radius: 16px;
   padding: 20px;
   margin-top: 25px;
+  box-sizing: border-box;
 }
 
 .servicosListados {
@@ -347,6 +318,8 @@
   align-items: center;
   padding: 10px 0;
   border-bottom: 1px solid #eee;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .servicosListados:last-of-type {
@@ -376,6 +349,8 @@
   border-top: 2px solid #8a2be2;
   font-size: 20px;
   color: #2d2d2d;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .resumo-horario {
@@ -395,12 +370,10 @@
   color: #666; 
 }
 
-
 .resumo-horario span::after {
   font-weight: 600;
   color: #8a2be2; 
 }
-
 
 .resumo-horario span:first-child::before {
   content: '🕒'; 
@@ -412,4 +385,68 @@
   content: '🏁'; 
   margin-right: 8px;
   font-size: 12px;
+}
+
+/* ================= RESPONSIVIDADE ================= */
+
+@media (max-width: 768px) {
+  .avo {
+    padding: 1rem;
+  }
+
+  .mae {
+    padding: 2rem;
+  }
+
+  .cabecalho h1 {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .mae {
+    padding: 1.5rem;
+  }
+
+  .cabecalho {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .cabecalho h1 {
+    font-size: 1.4rem;
+  }
+
+  .datas,
+  .horarios {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .botoes-acao {
+    flex-direction: column-reverse;
+    gap: 10px;
+  }
+
+  .botoes-acao button {
+    width: 100%;
+  }
+
+  .containerConclusaoFinal {
+    padding: 15px;
+  }
+
+  .containerConclusaoFinal h1 {
+    font-size: 18px;
+  }
+
+  .dropdown-sugestoes li {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    padding: 10px 12px;
+  }
 }

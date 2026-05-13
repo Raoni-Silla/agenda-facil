@@ -11,6 +11,7 @@ import { ThemeService } from '../../service/theme-service';
 export class CardEstatisticas implements OnInit {
   @Input() icone: string = 'fa-calendar';
   @Input() titulo: string = 'insira um titulo';
+  @Input() valor: number = 0;
   corCard = '';
 
   constructor(private themeService: ThemeService) {}

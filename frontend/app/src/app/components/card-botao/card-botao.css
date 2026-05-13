@@ -1,7 +1,8 @@
 .card-container {
   width: 350px; 
+  max-width: 100%;
   height: 220px;
-  
+  box-sizing: border-box;
   padding: 2rem;
   border-radius: 1.5rem;
   display: flex;
@@ -30,7 +31,6 @@
 .claro {
   background-color: white;
   color: #1e293b;
-  border: 1px solid #f1f5f9; 
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
   border: 1px solid rgb(201, 201, 201);
 }
@@ -46,11 +46,9 @@
   color: white;
 }
 
-
 a.card-container {
   text-decoration: none;
 }
-
 
 a.card-container,
 a.card-container:visited,
@@ -58,11 +56,38 @@ a.card-container:active {
   text-decoration: none;
 }
 
-
 a.card-container.gradiente {
   color: white;
 }
 
 a.card-container.claro {
   color: #1e293b;
+}
+
+/* --- Responsividade --- */
+
+@media (max-width: 768px) {
+  .card-container {
+    width: 100%;
+    height: auto;
+    min-height: 200px;
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .card-container {
+    padding: 1.25rem;
+    border-radius: 1.25rem;
+    min-height: 180px;
+  }
+
+  .gradiente i { 
+    font-size: 2.5rem; 
+  }
+
+  .claro .icon-wrapper {
+    width: 45px;
+    height: 45px;
+  }
 }

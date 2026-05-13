@@ -6,6 +6,8 @@ footer {
     border-top: 1px solid #f1f5f9;
     font-family: 'Inter', sans-serif;
     color: #64748b;
+    box-sizing: border-box;
+    transition: all 0.3s ease-in-out;
 }
 
 .footer-content {
@@ -39,4 +41,35 @@ footer {
     font-size: 0.8rem;
 }
 
+/* --- Responsividade --- */
 
+@media (max-width: 992px) {
+    footer {
+        width: 100%;
+        margin-left: 0;
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .credits, .tech-info {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 576px) {
+    footer {
+        padding: 1rem;
+    }
+    
+    .footer-content {
+        font-size: 0.8rem;
+        gap: 10px;
+    }
+}

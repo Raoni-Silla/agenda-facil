@@ -6,6 +6,7 @@
   background-color: #f8fafc; /* Fundo cinza super claro pra destacar o branco */
   border-radius: 30px;
   font-family: 'Poppins', sans-serif;
+  box-sizing: border-box;
 }
 
 /* ================= CABEÇALHO ================= */
@@ -115,6 +116,7 @@
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Animação mais suave */
   border: 1px solid rgba(255, 255, 255, 0.8);
+  box-sizing: border-box;
 }
 
 .dia-card:hover {
@@ -163,4 +165,110 @@
   background: rgba(255, 255, 255, 0.25);
   box-shadow: none;
   backdrop-filter: blur(4px); /* Efeito de vidro moderno na pílula */
+}
+
+/* ================= RESPONSIVIDADE ================= */
+
+@media (max-width: 992px) {
+  .calendario-wrapper {
+    padding: 30px;
+  }
+  
+  .titulo-mes .mes {
+    font-size: 2rem;
+  }
+  
+  .titulo-mes .ano {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .calendario-wrapper {
+    padding: 20px;
+    border-radius: 20px;
+  }
+
+  .cabecalho-calendario {
+    margin-bottom: 25px;
+  }
+
+  ::ng-deep .cal-month-view .cal-header .cal-cell {
+    font-size: 13px;
+    padding-bottom: 15px;
+  }
+
+  ::ng-deep .cal-month-view .cal-day-cell {
+    padding: 6px !important; 
+  }
+
+  .dia-card {
+    padding: 10px;
+    border-radius: 15px;
+  }
+
+  .btn-controle {
+    width: 45px;
+    height: 45px;
+  }
+}
+
+@media (max-width: 576px) {
+  .calendario-wrapper {
+    padding: 15px;
+    border-radius: 15px;
+  }
+
+  .cabecalho-calendario {
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 0;
+  }
+
+  .titulo-mes {
+    gap: 8px;
+  }
+
+  .titulo-mes .mes {
+    font-size: 1.5rem;
+  }
+
+  .titulo-mes .ano {
+    font-size: 1.3rem;
+  }
+
+  .btn-controle {
+    width: 40px;
+    height: 40px;
+    font-size: 0.9rem;
+  }
+
+  ::ng-deep .cal-month-view .cal-header .cal-cell {
+    font-size: 11px;
+    padding-bottom: 10px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  ::ng-deep .cal-month-view .cal-day-cell {
+    padding: 3px !important;
+  }
+
+  .dia-card {
+    padding: 6px;
+    border-radius: 10px;
+  }
+
+  .numero-dia {
+    font-size: 0.85rem;
+  }
+
+  .pilula {
+    padding: 2px 8px;
+    font-size: 0.7rem;
+    box-shadow: 0 2px 6px rgba(236, 72, 153, 0.2);
+  }
 }

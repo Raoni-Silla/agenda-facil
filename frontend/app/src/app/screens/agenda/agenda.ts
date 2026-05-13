@@ -24,6 +24,9 @@ export class Agenda implements OnInit, OnDestroy {
   paginaAtual = signal<number>(0);
   totalDePaginas = signal<number>(0);
   tamanhoPagina = 10;
+  Concluido: boolean = false;
+  Todos: boolean = false;
+  Pendente: boolean = false;
 
   sub!: Subscription;
   corCard!: string;
@@ -58,10 +61,17 @@ export class Agenda implements OnInit, OnDestroy {
   }
 
   filtrarTodos() {
+    this.Todos = true;
+    this.Pendente = false;
+    this.Concluido = false;
     this.carregarListaDeAgendamentos();
   }
 
   filtrarConcluidos() {
+    this.Todos = false;
+    this.Pendente = false;
+    this.Concluido = true;
+
     this.agendamentoService
       .filtrarConcluidos(this.paginaAtual(), this.tamanhoPagina, this.termoBusca())
       .subscribe({
@@ -74,6 +84,10 @@ export class Agenda implements OnInit, OnDestroy {
   }
 
   filtrarPendentes() {
+    this.Todos = false;
+    this.Pendente = true;
+    this.Concluido = false;
+
     this.agendamentoService
       .filtrarPendentes(this.paginaAtual(), this.tamanhoPagina, this.termoBusca())
       .subscribe({
@@ -123,6 +137,7 @@ export class Agenda implements OnInit, OnDestroy {
     this.agendamentoService.concluirAgendamento(id).subscribe({
       next: (res) => {
         this.carregarListaDeAgendamentos();
+        this.agendamentoService.notificarMudanca();
       },
       error: (err) => {
         console.log(err);
@@ -136,6 +151,7 @@ export class Agenda implements OnInit, OnDestroy {
       this.agendamentoService.excluirAgendamento(id).subscribe({
         next: () => {
           this.carregarListaDeAgendamentos();
+          this.agendamentoService.notificarMudanca();
         },
         error: (err) => console.error('Erro ao excluir:', err),
       });
